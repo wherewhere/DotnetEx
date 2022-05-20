@@ -1,9 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Authors>wherewhere</Authors>
+    <Copyright>Copyright © 2017 - 2022 wherewhere. All Rights Reserved.</Copyright>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <LangVersion>latest</LangVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/wherewhere/DotnetEx</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/wherewhere/DotnetEx</RepositoryUrl>
     <RootNamespace>System.Buffers</RootNamespace>
     <TargetFramework>net3.5-client</TargetFramework>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <Description>Implementation of the System.Buffers library without logging for .NET Framework 3.5.</Description>
   </PropertyGroup>
 
   <ItemGroup>

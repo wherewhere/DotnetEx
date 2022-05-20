@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NET35", "NET35", "{76D83330
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mscorlib.Polyfill.NET35", "src\mscorlib.NET35\mscorlib.Polyfill.NET35.csproj", "{59F1D291-102B-4D69-B6DD-B321376AE6E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Buffers.NET35", "src\System.Buffers.NET35\System.Buffers.NET35.csproj", "{1A281C1F-D3B1-44B9-BFFA-DC5C74DEA7A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyfill.System.Buffers.NET35", "src\System.Buffers.NET35\Polyfill.System.Buffers.NET35.csproj", "{1A281C1F-D3B1-44B9-BFFA-DC5C74DEA7A7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetEx.Test.NET35", "tests\DotnetEx.Test.NET35\DotnetEx.Test.NET35.csproj", "{806A865E-2B45-42C7-B072-928EB218AF4C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Runtime.InteropServices.RuntimeInformation.NET35", "src\System.Runtime.InteropServices.RuntimeInformation.NET35\System.Runtime.InteropServices.RuntimeInformation.NET35.csproj", "{1242C2E6-3FAF-4D0D-8827-739867521B06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET35", "src\System.Runtime.InteropServices.RuntimeInformation.NET35\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET35.csproj", "{1242C2E6-3FAF-4D0D-8827-739867521B06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,71 +4,68 @@ using System.Runtime.InteropServices.Resources;
 
 namespace System.Runtime.InteropServices
 {
-	public struct OSPlatform : IEquatable<OSPlatform>
-	{
-		private readonly string _osPlatform;
+    public readonly struct OSPlatform : IEquatable<OSPlatform>
+    {
+		public static OSPlatform FreeBSD { get; } = new OSPlatform("FREEBSD");
 
-		public static OSPlatform Linux { get; } = new OSPlatform("LINUX");
+        public static OSPlatform Linux { get; } = new OSPlatform("LINUX");
 
-		public static OSPlatform OSX { get; } = new OSPlatform("OSX");
+        public static OSPlatform OSX { get; } = new OSPlatform("OSX");
 
-		public static OSPlatform Windows { get; } = new OSPlatform("WINDOWS");
+        public static OSPlatform Windows { get; } = new OSPlatform("WINDOWS");
 
+        internal string Name { get; }
 
 		private OSPlatform(string osPlatform)
 		{
-			if (osPlatform == null)
-			{
-				throw new ArgumentNullException(nameof(osPlatform));
-			}
+			if (osPlatform == null) throw new ArgumentNullException(nameof(osPlatform));
+			if (osPlatform.Length == 0) throw new ArgumentException(Strings.Argument_EmptyValue, nameof(osPlatform));
 
-			if (osPlatform.Length == 0)
-			{
-				throw new ArgumentException(Strings.Argument_EmptyValue, nameof(osPlatform));
-			}
-
-			_osPlatform = osPlatform;
+			Name = osPlatform;
 		}
 
+        /// <summary>
+        /// Creates a new OSPlatform instance.
+        /// </summary>
+        /// <remarks>If you plan to call this method frequently, please consider caching its result.</remarks>
+        public static OSPlatform Create(string osPlatform)
+        {
+            return new OSPlatform(osPlatform);
+        }
 
-		public static OSPlatform Create(string osPlatform)
-		{
-			return new OSPlatform(osPlatform);
-		}
+        public bool Equals(OSPlatform other)
+        {
+            return Equals(other.Name);
+        }
 
-		public bool Equals(OSPlatform other)
-		{
-			return Equals(other._osPlatform);
-		}
+        internal bool Equals(string? other)
+        {
+            return string.Equals(Name, other, StringComparison.OrdinalIgnoreCase);
+        }
 
-		internal bool Equals(string other)
-		{
-			return string.Equals(_osPlatform, other, StringComparison.Ordinal);
-		}
+        public override bool Equals(object? obj)
+        {
+            return obj is OSPlatform osPlatform && Equals(osPlatform);
+        }
 
-		public override bool Equals(object obj)
-		{
-			return obj is OSPlatform && Equals((OSPlatform)obj);
-		}
+        public override int GetHashCode()
+        {
+            return Name == null ? 0 : StringComparer.OrdinalIgnoreCase.GetHashCode(Name);
+        }
 
-		public override int GetHashCode()
-		{
-			return _osPlatform == null ? 0 : _osPlatform.GetHashCode();
-		}
+        public override string ToString()
+        {
+            return Name ?? string.Empty;
+        }
 
-		public override string ToString()
-		{
-			return _osPlatform ?? string.Empty;
-		}
+        public static bool operator ==(OSPlatform left, OSPlatform right)
+        {
+            return left.Equals(right);
+        }
 
-		public static bool operator ==(OSPlatform left, OSPlatform right)
-		{
-			return left.Equals(right);
-		}
-
-		public static bool operator !=(OSPlatform left, OSPlatform right)
-		{
-			return !(left == right);
-		}
-	}
+        public static bool operator !=(OSPlatform left, OSPlatform right)
+        {
+            return !(left == right);
+        }
+    }
 }

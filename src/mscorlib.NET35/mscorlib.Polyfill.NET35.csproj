@@ -2,9 +2,33 @@
 
   <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Authors>wherewhere</Authors>
+    <Copyright>Copyright © 2017 - 2022 wherewhere. All Rights Reserved.</Copyright>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <LangVersion>latest</LangVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/wherewhere/DotnetEx</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/wherewhere/DotnetEx</RepositoryUrl>
     <RootNamespace></RootNamespace>
     <TargetFramework>net3.5-client</TargetFramework>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <Description>Contains polyfills from the mscorlib for .NET Framework 3.5.
+
+Add:
+      System.Threading.Volatile
+
+Extensions:
+      System.StringEx:
+      - Join&lt;T&gt;
+      - IsNullOrWhiteSpace
+
+      System.EnumEx:
+      - TryParse&lt;TEnum&gt;
+
+      System.EnvironmentEx:
+      - Is64BitProcess
+      - Is64BitOperatingSystem</Description>
   </PropertyGroup>
 
 </Project>

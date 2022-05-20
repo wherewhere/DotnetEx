@@ -2,23 +2,12 @@
 
 namespace System.Runtime.InteropServices
 {
-	public static class RuntimeInformation
+    public static partial class RuntimeInformation
 	{
 		/// <summary>
 		/// Operating system platform.
 		/// </summary>
 		private static OSPlatform _osPlatform;
-
-		/// <summary>
-		/// Operating system architecture.
-		/// </summary>
-		private static Architecture _osArch;
-
-		public static Architecture OSArchitecture
-		{
-			get { return _osArch; }
-		}
-
 
 		/// <summary>
 		/// Static constructor.
@@ -27,7 +16,7 @@ namespace System.Runtime.InteropServices
 		{
 			PlatformID platform = Environment.OSVersion.Platform;
 
-			if (platform == PlatformID.Win32NT || platform == PlatformID.Win32S
+			if (platform == PlatformID.Win32NT || platform == PlatformID.Win32S || platform == PlatformID.Xbox
 				|| platform == PlatformID.Win32Windows || platform == PlatformID.WinCE)
 			{
 				_osPlatform = OSPlatform.Windows;
@@ -52,8 +41,6 @@ namespace System.Runtime.InteropServices
 			{
 				_osPlatform = OSPlatform.Create("UNKNOWN");
 			}
-
-			_osArch = EnvironmentEx.Is64BitOperatingSystem ? Architecture.X64 : Architecture.X86;
 		}
 
 
