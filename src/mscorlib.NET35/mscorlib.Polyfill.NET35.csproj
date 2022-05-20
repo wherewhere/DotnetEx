@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace></RootNamespace>
+    <TargetFramework>net3.5-client</TargetFramework>
+  </PropertyGroup>
+
+</Project>

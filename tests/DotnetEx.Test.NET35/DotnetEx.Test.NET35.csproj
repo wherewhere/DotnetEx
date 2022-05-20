@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DotnetEx.Test</RootNamespace>
+    <TargetFramework>net3.5-client</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\mscorlib.NET35\mscorlib.Polyfill.NET35.csproj" />
+    <ProjectReference Include="..\..\src\System.Buffers.NET35\System.Buffers.NET35.csproj" />
+    <ProjectReference Include="..\..\src\System.Runtime.InteropServices.RuntimeInformation.NET35\System.Runtime.InteropServices.RuntimeInformation.NET35.csproj" />
+  </ItemGroup>
+
+</Project>
