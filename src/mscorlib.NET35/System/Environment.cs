@@ -1,40 +1,21 @@
-﻿using System;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-
-namespace System
+﻿namespace System
 {
-    public static class EnvironmentEx
+    public static partial class EnvironmentEx
     {
-        public static bool Is64BitProcess = (IntPtr.Size == 8);
-        public static bool Is64BitOperatingSystem = Is64BitProcess || InternalCheckIsWow64();
+        /// <summary>
+        /// Gets whether the current machine has only a single processor.
+        /// </summary>
+        internal static bool IsSingleProcessor => Environment.ProcessorCount == 1;
 
-        [DllImport("kernel32.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool IsWow64Process(
-            [In] IntPtr hProcess,
-            [Out] out bool wow64Process
-        );
+        private static string[]? s_commandLineArgs;
 
-        private static bool InternalCheckIsWow64()
+        internal static void SetCommandLineArgs(string[] cmdLineArgs) // invoked from VM
         {
-            if ((Environment.OSVersion.Version.Major == 5 && Environment.OSVersion.Version.Minor >= 1) ||
-                Environment.OSVersion.Version.Major >= 6)
-            {
-                using (Process p = Process.GetCurrentProcess())
-                {
-                    bool retVal;
-                    if (!IsWow64Process(p.Handle, out retVal))
-                    {
-                        return false;
-                    }
-                    return retVal;
-                }
-            }
-            else
-            {
-                return false;
-            }
+            s_commandLineArgs = cmdLineArgs;
         }
+
+        public static bool Is64BitProcess = IntPtr.Size == 8;
+
+        public static bool Is64BitOperatingSystem = Is64BitProcess || Is64BitOperatingSystemWhen32BitProcess;
     }
 }

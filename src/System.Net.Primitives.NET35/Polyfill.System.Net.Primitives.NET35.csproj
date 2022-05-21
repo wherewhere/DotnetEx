@@ -1,6 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Authors>wherewhere</Authors>
     <Copyright>Copyright © 2017 - 2022 wherewhere. All Rights Reserved.</Copyright>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -9,10 +10,10 @@
     <PackageProjectUrl>https://github.com/wherewhere/DotnetEx</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/wherewhere/DotnetEx</RepositoryUrl>
-    <RootNamespace>System.Buffers</RootNamespace>
+    <RootNamespace></RootNamespace>
     <TargetFramework>net3.5-client</TargetFramework>
-    <VersionPrefix>0.0.2</VersionPrefix>
-    <Description>Implementation of the System.Buffers library without logging for .NET Framework 3.5.</Description>
+    <VersionPrefix>0.0.1</VersionPrefix>
+	<Description>Contains polyfills for the `DnsEndPoint` class from the System.Net.Primitives library for .NET Framework 3.5.</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources/Strings.Designer.cs">
+    <Compile Update="Resources\Strings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
@@ -28,9 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources/Strings.resx">
+    <EmbeddedResource Update="Resources\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>System.Net.Resources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
 

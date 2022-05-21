@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/wherewhere/DotnetEx</RepositoryUrl>
     <RootNamespace></RootNamespace>
     <TargetFramework>net3.5-client</TargetFramework>
-    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionPrefix>0.0.2</VersionPrefix>
     <Description>Contains polyfills from the mscorlib for .NET Framework 3.5.
 
 Add:
@@ -30,5 +30,21 @@ Extensions:
       - Is64BitProcess
       - Is64BitOperatingSystem</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>System.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
 
 </Project>

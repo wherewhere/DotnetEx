@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace System.Runtime.InteropServices
+﻿namespace System.Runtime.InteropServices
 {
     public static partial class RuntimeInformation
     {
         private static string? s_osDescription;
-        private static volatile int s_osArchPlusOne;
+        private static readonly int s_osArchPlusOne;
 
         public static string OSDescription
         {
@@ -17,7 +12,7 @@ namespace System.Runtime.InteropServices
                 string? osDescription = s_osDescription;
                 if (osDescription is null)
                 {
-                    switch(_osPlatform.Name)
+                    switch (OperatingSystemEx.OSPlatform)
                     {
                         case "WINDOWS":
                             OperatingSystem os = Environment.OSVersion;

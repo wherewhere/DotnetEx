@@ -1,12 +1,10 @@
-﻿using System;
-
-using System.Runtime.InteropServices.Resources;
+﻿using System.Runtime.InteropServices.Resources;
 
 namespace System.Runtime.InteropServices
 {
     public readonly struct OSPlatform : IEquatable<OSPlatform>
     {
-		public static OSPlatform FreeBSD { get; } = new OSPlatform("FREEBSD");
+        public static OSPlatform FreeBSD { get; } = new OSPlatform("FREEBSD");
 
         public static OSPlatform Linux { get; } = new OSPlatform("LINUX");
 
@@ -16,13 +14,15 @@ namespace System.Runtime.InteropServices
 
         internal string Name { get; }
 
-		private OSPlatform(string osPlatform)
-		{
-			if (osPlatform == null) throw new ArgumentNullException(nameof(osPlatform));
-			if (osPlatform.Length == 0) throw new ArgumentException(Strings.Argument_EmptyValue, nameof(osPlatform));
+        private OSPlatform(string osPlatform!!)
+        {
+            if (osPlatform.Length == 0)
+            {
+                throw new ArgumentException(Strings.Argument_EmptyValue, nameof(osPlatform));
+            }
 
-			Name = osPlatform;
-		}
+            Name = osPlatform;
+        }
 
         /// <summary>
         /// Creates a new OSPlatform instance.
