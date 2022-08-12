@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace System.Net.Resources {
+namespace System.Buffers.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace System.Net.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("System.Buffers.Resources.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,11 @@ namespace System.Net.Resources {
         }
         
         /// <summary>
-        ///   查找类似 The specified value is not valid. 的本地化字符串。
+        ///   查找类似 The buffer is not associated with this pool and may not be returned to it. 的本地化字符串。
         /// </summary>
-        internal static string net_sockets_invalid_optionValue_all {
+        internal static string ArgumentException_BufferNotFromPool {
             get {
-                return ResourceManager.GetString("net_sockets_invalid_optionValue_all", resourceCulture);
+                return ResourceManager.GetString("ArgumentException_BufferNotFromPool", resourceCulture);
             }
         }
     }

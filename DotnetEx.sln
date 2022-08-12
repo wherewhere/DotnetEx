@@ -15,6 +15,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetEx.Test.NET35", "test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET35", "src\System.Runtime.InteropServices.RuntimeInformation.NET35\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET35.csproj", "{1242C2E6-3FAF-4D0D-8827-739867521B06}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NET40", "NET40", "{3D79C1F5-229A-47F9-B345-F4F63239851E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetEx.Test.NET40", "tests\DotnetEx.Test.NET40\DotnetEx.Test.NET40.csproj", "{B6E82C81-6936-4638-91B2-F97B8F409709}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET40", "src\System.Runtime.InteropServices.RuntimeInformation.NET40\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET40.csproj", "{B8109AEF-DB82-44AF-A7C2-3BC8452CAAEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mscorlib.Polyfill.NET40", "src\mscorlib.NET40\mscorlib.Polyfill.NET40.csproj", "{CF054C23-216C-4CE2-ACCE-BE9C3135E747}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyfill.System.Buffers.NET40", "src\System.Buffers.NET40\Polyfill.System.Buffers.NET40.csproj", "{E12AB142-6DCB-4B59-967D-CF3C6F994E44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +47,22 @@ Global
 		{1242C2E6-3FAF-4D0D-8827-739867521B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1242C2E6-3FAF-4D0D-8827-739867521B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1242C2E6-3FAF-4D0D-8827-739867521B06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6E82C81-6936-4638-91B2-F97B8F409709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E82C81-6936-4638-91B2-F97B8F409709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E82C81-6936-4638-91B2-F97B8F409709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E82C81-6936-4638-91B2-F97B8F409709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8109AEF-DB82-44AF-A7C2-3BC8452CAAEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8109AEF-DB82-44AF-A7C2-3BC8452CAAEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8109AEF-DB82-44AF-A7C2-3BC8452CAAEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8109AEF-DB82-44AF-A7C2-3BC8452CAAEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF054C23-216C-4CE2-ACCE-BE9C3135E747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF054C23-216C-4CE2-ACCE-BE9C3135E747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF054C23-216C-4CE2-ACCE-BE9C3135E747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF054C23-216C-4CE2-ACCE-BE9C3135E747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E12AB142-6DCB-4B59-967D-CF3C6F994E44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E12AB142-6DCB-4B59-967D-CF3C6F994E44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E12AB142-6DCB-4B59-967D-CF3C6F994E44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E12AB142-6DCB-4B59-967D-CF3C6F994E44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +72,10 @@ Global
 		{1A281C1F-D3B1-44B9-BFFA-DC5C74DEA7A7} = {76D83330-6336-4F0A-B1F3-36D2A648FD40}
 		{806A865E-2B45-42C7-B072-928EB218AF4C} = {A1677C74-394B-412C-B250-6DD6A2F3AC61}
 		{1242C2E6-3FAF-4D0D-8827-739867521B06} = {76D83330-6336-4F0A-B1F3-36D2A648FD40}
+		{B6E82C81-6936-4638-91B2-F97B8F409709} = {A1677C74-394B-412C-B250-6DD6A2F3AC61}
+		{B8109AEF-DB82-44AF-A7C2-3BC8452CAAEF} = {3D79C1F5-229A-47F9-B345-F4F63239851E}
+		{CF054C23-216C-4CE2-ACCE-BE9C3135E747} = {3D79C1F5-229A-47F9-B345-F4F63239851E}
+		{E12AB142-6DCB-4B59-967D-CF3C6F994E44} = {3D79C1F5-229A-47F9-B345-F4F63239851E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {08ADB8FA-1655-458D-BD2E-70E37BCB8452}

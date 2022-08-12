@@ -5,20 +5,38 @@
     <Authors>wherewhere</Authors>
     <Copyright>Copyright © 2017 - 2022 wherewhere. All Rights Reserved.</Copyright>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <IncludeSymbols>True</IncludeSymbols>
     <LangVersion>latest</LangVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/wherewhere/DotnetEx</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/wherewhere/DotnetEx</RepositoryUrl>
     <RootNamespace></RootNamespace>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <TargetFramework>net3.5-client</TargetFramework>
     <VersionPrefix>0.0.2</VersionPrefix>
     <Description>Contains polyfills from the mscorlib for .NET Framework 3.5.
 
 Add:
+      System.IProgress
+      System.Progress
+      System.Collections.Generic
+      System.Collections.Generic.IReadOnlyCollection
+      System.Collections.Generic.IReadOnlyDictionary
+      System.Collections.Generic.IReadOnlyList
+      System.Collections.Generic.IReadOnlySet
+      System.Net.DnsEndPoint
+      System.Threading.SpinWait
       System.Threading.Volatile
 
 Extensions:
+      System.ArgumentNullExceptionEx:
+      - ThrowIfNull
+
+      System.EventHandlerEx:
+      - EventHandlerEx&lt;TEventArgs&gt;
+
       System.StringEx:
       - Join&lt;T&gt;
       - IsNullOrWhiteSpace
@@ -28,7 +46,15 @@ Extensions:
 
       System.EnvironmentEx:
       - Is64BitProcess
-      - Is64BitOperatingSystem</Description>
+      - Is64BitOperatingSystem
+
+      System.OperatingSystemEx:
+      - VersionString
+      - IsOSPlatform
+      - IsOSPlatformVersionAtLeast
+
+      System.Text.StringBuilderEx:
+      - Clear</Description>
   </PropertyGroup>
 
   <ItemGroup>

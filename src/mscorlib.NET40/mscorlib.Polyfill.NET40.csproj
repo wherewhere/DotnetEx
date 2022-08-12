@@ -1,29 +1,29 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Authors>wherewhere</Authors>
     <Copyright>Copyright © 2017 - 2022 wherewhere. All Rights Reserved.</Copyright>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <IncludeSymbols>True</IncludeSymbols>
     <LangVersion>latest</LangVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/wherewhere/DotnetEx</PackageProjectUrl>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/wherewhere/DotnetEx</RepositoryUrl>
-    <RootNamespace>System.Buffers</RootNamespace>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <TargetFramework>net3.5-client</TargetFramework>
-    <VersionPrefix>0.0.2</VersionPrefix>
-    <Description>Implementation of the System.Buffers library without logging for .NET Framework 3.5.</Description>
+    <RootNamespace></RootNamespace>
+    <TargetFramework>net4.0-client</TargetFramework>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <Description>Contains polyfills from the mscorlib for .NET Framework 4.0.
+
+Add:
+      System.Threading.Volatile
+
+Extensions:
+      System.OperatingSystemEx</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\mscorlib.NET35\mscorlib.Polyfill.NET35.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Resources/Strings.Designer.cs">
+    <Compile Update="Resources\Strings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
@@ -31,9 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources/Strings.resx">
+    <EmbeddedResource Update="Resources\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>System.Resources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
 

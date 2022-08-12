@@ -1,25 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Authors>wherewhere</Authors>
     <Copyright>Copyright © 2017 - 2022 wherewhere. All Rights Reserved.</Copyright>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <IncludeSymbols>True</IncludeSymbols>
     <LangVersion>latest</LangVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/wherewhere/DotnetEx</PackageProjectUrl>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/wherewhere/DotnetEx</RepositoryUrl>
     <RootNamespace>System.Buffers</RootNamespace>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <TargetFramework>net3.5-client</TargetFramework>
-    <VersionPrefix>0.0.2</VersionPrefix>
-    <Description>Implementation of the System.Buffers library without logging for .NET Framework 3.5.</Description>
+    <TargetFramework>net4.0-client</TargetFramework>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <Description>Implementation of the System.Buffers library without logging for .NET Framework 4.0.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\mscorlib.NET35\mscorlib.Polyfill.NET35.csproj" />
+    <ProjectReference Include="..\mscorlib.NET40\mscorlib.Polyfill.NET40.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,15 +4,18 @@
     <Authors>wherewhere</Authors>
     <Copyright>Copyright © 2017 - 2022 wherewhere. All Rights Reserved.</Copyright>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <IncludeSymbols>True</IncludeSymbols>
     <LangVersion>preview</LangVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/wherewhere/DotnetEx</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/wherewhere/DotnetEx</RepositoryUrl>
     <RootNamespace>System.Runtime.InteropServices.RuntimeInformation</RootNamespace>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <TargetFramework>net3.5-client</TargetFramework>
     <VersionPrefix>0.0.2</VersionPrefix>
-    <Description>Contains polyfills for the `OSArchitecture` property and `IsOSPlatform` method of `RuntimeInformation` class from the System.Runtime.InteropServices.RuntimeInformation library for .NET Framework 3.5.</Description>
+    <Description>Contains polyfills of `RuntimeInformation` class from the System.Runtime.InteropServices.RuntimeInformation library for .NET Framework 3.5.</Description>
   </PropertyGroup>
 
   <ItemGroup>
