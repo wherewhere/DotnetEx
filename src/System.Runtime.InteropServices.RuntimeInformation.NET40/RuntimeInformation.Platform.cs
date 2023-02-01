@@ -2,14 +2,14 @@
 {
     public static partial class RuntimeInformation
     {
-        private static string? s_osDescription;
+        private static string s_osDescription;
         private static readonly int s_osArchPlusOne;
 
         public static string OSDescription
         {
             get
             {
-                string? osDescription = s_osDescription;
+                string osDescription = s_osDescription;
                 if (osDescription is null)
                 {
                     switch (OperatingSystemEx.OSPlatform)

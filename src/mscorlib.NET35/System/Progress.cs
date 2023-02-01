@@ -22,7 +22,7 @@ namespace System
         /// <summary>The synchronization context captured upon construction.  This will never be null.</summary>
         private readonly SynchronizationContext _synchronizationContext;
         /// <summary>The handler specified to the constructor.  This may be null.</summary>
-        private readonly Action<T>? _handler;
+        private readonly Action<T> _handler;
         /// <summary>A cached delegate used to post invocation to the synchronization context.</summary>
         private readonly SendOrPostCallback _invokeHandlers;
 
@@ -57,7 +57,7 @@ namespace System
         /// Handlers registered with this event will be invoked on the
         /// <see cref="System.Threading.SynchronizationContext"/> captured when the instance was constructed.
         /// </remarks>
-        public event EventHandlerEx<T>? ProgressChanged;
+        public event EventHandlerEx<T> ProgressChanged;
 
         /// <summary>Reports a progress change.</summary>
         /// <param name="value">The value of the updated progress.</param>
@@ -66,8 +66,8 @@ namespace System
             // If there's no handler, don't bother going through the sync context.
             // Inside the callback, we'll need to check again, in case
             // an event handler is removed between now and then.
-            Action<T>? handler = _handler;
-            EventHandlerEx<T>? changedEvent = ProgressChanged;
+            Action<T> handler = _handler;
+            EventHandlerEx<T> changedEvent = ProgressChanged;
             if (handler != null || changedEvent != null)
             {
                 // Post the processing to the sync context.
@@ -82,12 +82,12 @@ namespace System
 
         /// <summary>Invokes the action and event callbacks.</summary>
         /// <param name="state">The progress value.</param>
-        private void InvokeHandlers(object? state)
+        private void InvokeHandlers(object state)
         {
             T value = (T)state!;
 
-            Action<T>? handler = _handler;
-            EventHandlerEx<T>? changedEvent = ProgressChanged;
+            Action<T> handler = _handler;
+            EventHandlerEx<T> changedEvent = ProgressChanged;
 
             handler?.Invoke(value);
             changedEvent?.Invoke(this, value);

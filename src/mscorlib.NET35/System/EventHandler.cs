@@ -3,5 +3,5 @@
 
 namespace System
 {
-    public delegate void EventHandlerEx<TEventArgs>(object? sender, TEventArgs e); // Removed TEventArgs constraint post-.NET 4
+    public delegate void EventHandlerEx<TEventArgs>(object sender, TEventArgs e); // Removed TEventArgs constraint post-.NET 4
 }

@@ -7,7 +7,7 @@
         /// </summary>
         internal static bool IsSingleProcessor => Environment.ProcessorCount == 1;
 
-        private static string[]? s_commandLineArgs;
+        private static string[] s_commandLineArgs;
 
         internal static void SetCommandLineArgs(string[] cmdLineArgs) // invoked from VM
         {

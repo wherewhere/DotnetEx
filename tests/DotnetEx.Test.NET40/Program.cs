@@ -11,11 +11,9 @@ namespace DotnetEx.Test.NET35
             Console.WriteLine(RuntimeInformation.OSDescription);
             Console.WriteLine(RuntimeInformation.RuntimeIdentifier);
             Console.WriteLine(RuntimeInformation.FrameworkDescription);
-            Console.WriteLine("End");
-            while (true)
-            {
-                ;
-            }
+
+            Console.Write("Press any key to exit...");
+            Console.ReadKey(true);
         }
     }
 }

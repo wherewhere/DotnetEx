@@ -4,12 +4,10 @@
     <LangVersion>latest</LangVersion>
     <OutputType>Exe</OutputType>
     <RootNamespace>DotnetEx.Test</RootNamespace>
-    <TargetFramework>net3.5-client</TargetFramework>
+    <TargetFrameworks>net2.0-client;net3.5-client</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\mscorlib.NET35\mscorlib.Polyfill.NET35.csproj" />
-    <ProjectReference Include="..\..\src\System.Buffers.NET35\Polyfill.System.Buffers.NET35.csproj" />
     <ProjectReference Include="..\..\src\System.Runtime.InteropServices.RuntimeInformation.NET35\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET35.csproj" />
   </ItemGroup>
 

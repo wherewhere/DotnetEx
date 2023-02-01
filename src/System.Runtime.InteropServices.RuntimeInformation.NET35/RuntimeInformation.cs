@@ -1,12 +1,11 @@
-﻿using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace System.Runtime.InteropServices
 {
     public static partial class RuntimeInformation
     {
         private const string FrameworkName = ".NET";
-        private static string? s_frameworkDescription;
+        private static string s_frameworkDescription;
 
         public static string FrameworkDescription
         {
@@ -14,7 +13,7 @@ namespace System.Runtime.InteropServices
             {
                 if (s_frameworkDescription == null)
                 {
-                    string versionString = ((AssemblyInformationalVersionAttribute)typeof(object).Assembly.GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), true).FirstOrDefault()).InformationalVersion;
+                    string versionString = ((AssemblyInformationalVersionAttribute)typeof(object).Assembly.GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), true)[0]).InformationalVersion;
 
                     // Strip the git hash if there is one
                     int plusIndex = versionString.IndexOf('+');

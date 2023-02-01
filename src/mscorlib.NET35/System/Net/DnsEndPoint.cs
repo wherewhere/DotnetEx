@@ -30,10 +30,10 @@ namespace System.Net
             _family = addressFamily;
         }
 
-        public override bool Equals(object? comparand)
+        public override bool Equals(object comparand)
         {
             return comparand is DnsEndPoint dnsComparand
-&& _family == dnsComparand._family &&
+                && _family == dnsComparand._family &&
                     Port == dnsComparand.Port &&
                     Host == dnsComparand.Host;
         }

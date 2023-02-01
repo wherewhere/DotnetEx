@@ -17,19 +17,19 @@ namespace System
             HResult = HResults.E_POINTER;
         }
 
-        public ArgumentNullExceptionEx(string? paramName)
+        public ArgumentNullExceptionEx(string paramName)
             : base(Strings.ArgumentNull_Generic, paramName)
         {
             HResult = HResults.E_POINTER;
         }
 
-        public ArgumentNullExceptionEx(string? message, Exception? innerException)
+        public ArgumentNullExceptionEx(string message, Exception innerException)
             : base(message, innerException)
         {
             HResult = HResults.E_POINTER;
         }
 
-        public ArgumentNullExceptionEx(string? paramName, string? message)
+        public ArgumentNullExceptionEx(string paramName, string message)
             : base(message, paramName)
         {
             HResult = HResults.E_POINTER;
@@ -42,7 +42,7 @@ namespace System
         /// <summary>Throws an <see cref="ArgumentNullException"/> if <paramref name="argument"/> is null.</summary>
         /// <param name="argument">The reference type argument to validate as non-null.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="argument"/> corresponds.</param>
-        public static void ThrowIfNull(object? argument, string? paramName = null)
+        public static void ThrowIfNull(object argument, string paramName = null)
         {
             if (argument is null)
             {
@@ -54,7 +54,7 @@ namespace System
         /// <param name="argument">The pointer argument to validate as non-null.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="argument"/> corresponds.</param>
         [CLSCompliant(false)]
-        public static unsafe void ThrowIfNull(void* argument, string? paramName = null)
+        public static unsafe void ThrowIfNull(void* argument, string paramName = null)
         {
             if (argument is null)
             {
@@ -65,7 +65,7 @@ namespace System
         /// <summary>Throws an <see cref="ArgumentNullException"/> if <paramref name="argument"/> is null.</summary>
         /// <param name="argument">The pointer argument to validate as non-null.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="argument"/> corresponds.</param>
-        internal static unsafe void ThrowIfNull(IntPtr argument, string? paramName = null)
+        internal static unsafe void ThrowIfNull(IntPtr argument, string paramName = null)
         {
             if (argument == IntPtr.Zero)
             {
@@ -73,7 +73,7 @@ namespace System
             }
         }
 
-        internal static void Throw(string? paramName) =>
+        internal static void Throw(string paramName) =>
             throw new ArgumentNullException(paramName);
     }
 }

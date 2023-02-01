@@ -14,14 +14,14 @@ namespace System.Runtime.InteropServices
 
         internal string Name { get; }
 
-        private OSPlatform(string osPlatform!!)
+        private OSPlatform(string osPlatform)
         {
             if (osPlatform.Length == 0)
             {
                 throw new ArgumentException(Strings.Argument_EmptyValue, nameof(osPlatform));
             }
 
-            Name = osPlatform;
+            Name = osPlatform ?? throw new ArgumentNullException(nameof(osPlatform));
         }
 
         /// <summary>
@@ -38,12 +38,12 @@ namespace System.Runtime.InteropServices
             return Equals(other.Name);
         }
 
-        internal bool Equals(string? other)
+        internal bool Equals(string other)
         {
             return string.Equals(Name, other, StringComparison.OrdinalIgnoreCase);
         }
 
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             return obj is OSPlatform osPlatform && Equals(osPlatform);
         }

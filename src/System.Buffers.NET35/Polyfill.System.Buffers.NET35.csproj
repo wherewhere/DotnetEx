@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Authors>wherewhere</Authors>
-    <Copyright>Copyright © 2017 - 2022 wherewhere. All Rights Reserved.</Copyright>
+    <Copyright>Copyright © 2017 - 2023 wherewhere. All Rights Reserved.</Copyright>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <IncludeSymbols>True</IncludeSymbols>
     <LangVersion>latest</LangVersion>
@@ -13,10 +13,16 @@
     <RepositoryUrl>https://github.com/wherewhere/DotnetEx</RepositoryUrl>
     <RootNamespace>System.Buffers</RootNamespace>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <TargetFramework>net3.5-client</TargetFramework>
-    <VersionPrefix>0.0.2</VersionPrefix>
-    <Description>Implementation of the System.Buffers library without logging for .NET Framework 3.5.</Description>
+    <TargetFrameworks>net2.0-client;net3.5-client</TargetFrameworks>
+    <VersionPrefix>0.0.3</VersionPrefix>
+    <Description>Implementation of the System.Buffers library without logging for .NET Framework 2.0 and .NET Framework 3.5.</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\mscorlib.NET35\mscorlib.Polyfill.NET35.csproj" />

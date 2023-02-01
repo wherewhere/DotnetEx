@@ -8,8 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\mscorlib.NET40\mscorlib.Polyfill.NET40.csproj" />
-    <ProjectReference Include="..\..\src\System.Buffers.NET40\Polyfill.System.Buffers.NET40.csproj" />
     <ProjectReference Include="..\..\src\System.Runtime.InteropServices.RuntimeInformation.NET40\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET40.csproj" />
   </ItemGroup>
 

@@ -6,8 +6,8 @@ namespace System
 {
     public sealed class OperatingSystemEx : ISerializable, ICloneable
     {
-        private readonly string? _servicePack;
-        private string? _versionString;
+        private readonly string _servicePack;
+        private string _versionString;
 
         public static string OSPlatform
         {
@@ -40,7 +40,7 @@ namespace System
         {
         }
 
-        internal OperatingSystemEx(PlatformID platform, Version version, string? servicePack)
+        internal OperatingSystemEx(PlatformID platform, Version version, string servicePack)
         {
             if (platform is < PlatformID.Win32S or > PlatformID.MacOSX)
             {
