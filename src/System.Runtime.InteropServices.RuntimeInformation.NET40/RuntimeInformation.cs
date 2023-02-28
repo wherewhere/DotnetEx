@@ -3,11 +3,18 @@ using System.Reflection;
 
 namespace System.Runtime.InteropServices
 {
+    /// <summary>
+    /// Provides information about the .NET runtime installation.
+    /// </summary>
     public static partial class RuntimeInformation
     {
-        private const string FrameworkName = ".NET";
+        private const string FrameworkName = ".NET Framework";
         private static string s_frameworkDescription;
 
+        /// <summary>
+        /// Gets the name of the .NET installation on which an app is running.
+        /// </summary>
+        /// <value>The name of the .NET installation on which the app is running.</value>
         public static string FrameworkDescription
         {
             get

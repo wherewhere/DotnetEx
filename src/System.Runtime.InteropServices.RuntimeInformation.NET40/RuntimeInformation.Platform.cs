@@ -3,8 +3,11 @@
     public static partial class RuntimeInformation
     {
         private static string s_osDescription;
-        private static readonly int s_osArchPlusOne;
 
+        /// <summary>
+        /// Gets a string that describes the operating system on which the app is running.
+        /// </summary>
+        /// <value>The description of the operating system on which the app is running.</value>
         public static string OSDescription
         {
             get

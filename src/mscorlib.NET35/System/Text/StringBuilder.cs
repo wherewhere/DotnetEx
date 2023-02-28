@@ -14,6 +14,9 @@
 ===========================================================*/
 namespace System.Text
 {
+    /// <summary>
+    /// Represents a mutable string of characters. This class cannot be inherited.
+    /// </summary>
     public static class StringBuilderEx
     {
         //
@@ -29,6 +32,11 @@ namespace System.Text
         internal const int MaxChunkSize = 8000;
 
         // Convenience method for sb.Length=0;
+        /// <summary>
+        /// Removes all characters from the current <see cref="StringBuilder"/> instance.
+        /// </summary>
+        /// <param name="builder">The <see cref="StringBuilder"/> to removes all characters.</param>
+        /// <returns>An object whose <see cref="StringBuilder.Length"/> is 0 (zero).</returns>
         public static StringBuilder Clear(this StringBuilder builder)
         {
             builder.Length = 0;

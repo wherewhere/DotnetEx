@@ -18,8 +18,21 @@ using System.Text;
 
 namespace System
 {
+    /// <summary>
+    /// Represents text as a sequence of UTF-16 code units.
+    /// </summary>
     public static class StringEx
     {
+        /// <summary>
+        /// Concatenates the elements of an object array, using the specified separator between each element.
+        /// </summary>
+        /// <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in
+        /// the returned string only if <paramref name="values"/> has more than one element.</param>
+        /// <param name="values">An array that contains the elements to concatenate.</param>
+        /// <returns>A string that consists of the elements of <paramref name="values"/> delimited by the <paramref name="separator"/> string.
+        /// <para>-or-</para><see cref="string.Empty"/> if <paramref name="values"/> has zero elements.<para>-or-</para>
+        /// .NET Framework only: <see cref="string.Empty"/> if the first element of <paramref name="values"/> is <see langword="null"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="values"/> is <see langword="null"/>.</exception>
         public static string Join(string separator, params object[] values)
         {
             if (values == null)
@@ -61,6 +74,16 @@ namespace System
             return StringBuilderCache.GetStringAndRelease(result);
         }
 
+        /// <summary>
+        /// Concatenates the members of a collection, using the specified separator between each member.
+        /// </summary>
+        /// <typeparam name="T">The type of the members of <paramref name="values"/>.</typeparam>
+        /// <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in
+        /// the returned string only if <paramref name="values"/> has more than one element.</param>
+        /// <param name="values">A collection that contains the objects to concatenate.</param>
+        /// <returns>A string that consists of the elements of <paramref name="values"/> delimited by the <paramref name="separator"/> string.
+        /// <para>-or-</para><see cref="string.Empty"/> if <paramref name="values"/> has zero elements.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="values"/> is <see langword="null"/>.</exception>
         public static string Join<T>(string separator, IEnumerable<T> values)
         {
             if (values == null)
@@ -108,6 +131,16 @@ namespace System
             return StringBuilderCache.GetStringAndRelease(result);
         }
 
+        /// <summary>
+        /// Concatenates the members of a constructed <see cref="IEnumerable{T}"/> collection of type <see cref="string"/>,
+        /// using the specified separator between each member.
+        /// </summary>
+        /// <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in
+        /// the returned string only if values has more than one element.</param>
+        /// <param name="values">A collection that contains the strings to concatenate.</param>
+        /// <returns>A string that consists of the elements of <paramref name="values"/> delimited by the <paramref name="separator"/> string.
+        /// <para>-or-</para><see cref="string.Empty"/> if <paramref name="values"/> has zero elements.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="values"/> is <see langword="null"/>.</exception>
         public static string Join(string separator, IEnumerable<string> values)
         {
             if (values == null)
@@ -143,6 +176,12 @@ namespace System
             return StringBuilderCache.GetStringAndRelease(result);
         }
 
+        /// <summary>
+        /// Indicates whether a specified string is <see langword="null"/>, empty, or consists only of white-space characters.
+        /// </summary>
+        /// <param name="value">The string to test.</param>
+        /// <returns><see langword="true"/> if the <paramref name="value"/> parameter is <see langword="null"/> or <see cref="string.Empty"/>,
+        /// or if <paramref name="value"/> consists exclusively of white-space characters.</returns>
         public static bool IsNullOrWhiteSpace(string value)
         {
             if (value == null)

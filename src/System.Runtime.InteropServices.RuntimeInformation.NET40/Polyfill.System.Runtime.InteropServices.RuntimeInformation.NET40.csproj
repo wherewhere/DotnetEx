@@ -14,7 +14,7 @@
     <RootNamespace>System.Runtime.InteropServices.RuntimeInformation</RootNamespace>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <TargetFramework>net4.0-client</TargetFramework>
-    <VersionPrefix>0.0.2</VersionPrefix>
+    <VersionPrefix>0.0.3</VersionPrefix>
     <Description>Contains polyfills of `RuntimeInformation` class from the System.Runtime.InteropServices.RuntimeInformation library for .NET Framework 4.0.</Description>
   </PropertyGroup>
 

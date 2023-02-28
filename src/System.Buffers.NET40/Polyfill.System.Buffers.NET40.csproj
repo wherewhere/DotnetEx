@@ -14,7 +14,7 @@
     <RootNamespace>System.Buffers</RootNamespace>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <TargetFramework>net4.0-client</TargetFramework>
-    <VersionPrefix>0.0.2</VersionPrefix>
+    <VersionPrefix>0.0.3</VersionPrefix>
     <Description>Implementation of the System.Buffers library without logging for .NET Framework 4.0.</Description>
   </PropertyGroup>
 

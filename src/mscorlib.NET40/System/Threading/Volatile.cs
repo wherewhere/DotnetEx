@@ -126,7 +126,6 @@ namespace System.Threading
         /// <param name="location">The field to read.</param>
         /// <returns>The value that was read. This value is the latest written by any processor in
         /// the computer, regardless of the number of processors or the state of processor cache.</returns>
-        [CLSCompliant(false)]
         public static sbyte Read(ref sbyte location)
         {
             sbyte result = location;
@@ -159,7 +158,6 @@ namespace System.Threading
         /// <param name="location">The field to read.</param>
         /// <returns>The value that was read. This value is the latest written by any processor in
         /// the computer, regardless of the number of processors or the state of processor cache.</returns>
-        [CLSCompliant(false)]
         public static ushort Read(ref ushort location)
         {
             ushort result = location;
@@ -176,7 +174,6 @@ namespace System.Threading
         /// <param name="location">The field to read.</param>
         /// <returns>The value that was read. This value is the latest written by any processor in
         /// the computer, regardless of the number of processors or the state of processor cache.</returns>
-        [CLSCompliant(false)]
         public static uint Read(ref uint location)
         {
             uint result = location;
@@ -193,7 +190,6 @@ namespace System.Threading
         /// <param name="location">The field to read.</param>
         /// <returns>The value that was read. This value is the latest written by any processor in
         /// the computer, regardless of the number of processors or the state of processor cache.</returns>
-        [CLSCompliant(false)]
         public static unsafe ulong Read(ref ulong location)
         {
             fixed (ulong* pLocation = &location)
@@ -210,7 +206,6 @@ namespace System.Threading
         /// <param name="location">The field to read.</param>
         /// <returns>The value that was read. This value is the latest written by any processor in
         /// the computer, regardless of the number of processors or the state of processor cache.</returns>
-        [CLSCompliant(false)]
         public static UIntPtr Read(ref UIntPtr location)
         {
             UIntPtr result = location;
@@ -341,7 +336,6 @@ namespace System.Threading
         /// <param name="location">The field where the value is written.</param>
         /// <param name="value">The value to write. The value is written immediately so that it is visible
         /// to all processors in the computer.</param>
-        [CLSCompliant(false)]
         public static void Write(ref sbyte location, sbyte value)
         {
             Thread.MemoryBarrier();
@@ -370,7 +364,6 @@ namespace System.Threading
         /// <param name="location">The field where the value is written.</param>
         /// <param name="value">The value to write. The value is written immediately so that it is visible
         /// to all processors in the computer.</param>
-        [CLSCompliant(false)]
         public static void Write(ref ushort location, ushort value)
         {
             Thread.MemoryBarrier();
@@ -385,7 +378,6 @@ namespace System.Threading
         /// <param name="location">The field where the value is written.</param>
         /// <param name="value">The value to write. The value is written immediately so that it is visible
         /// to all processors in the computer.</param>
-        [CLSCompliant(false)]
         public static void Write(ref uint location, uint value)
         {
             Thread.MemoryBarrier();
@@ -400,7 +392,6 @@ namespace System.Threading
         /// <param name="location">The field where the value is written.</param>
         /// <param name="value">The value to write. The value is written immediately so that it is visible
         /// to all processors in the computer.</param>
-        [CLSCompliant(false)]
         public static unsafe void Write(ref ulong location, ulong value)
         {
             fixed (ulong* pLocation = &location)
@@ -417,7 +408,6 @@ namespace System.Threading
         /// <param name="location">The field where the value is written.</param>
         /// <param name="value">The value to write. The value is written immediately so that it is visible
         /// to all processors in the computer.</param>
-        [CLSCompliant(false)]
         public static void Write(ref UIntPtr location, UIntPtr value)
         {
             Thread.MemoryBarrier();

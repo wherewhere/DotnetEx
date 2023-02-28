@@ -15,7 +15,7 @@
     <RootNamespace></RootNamespace>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <TargetFrameworks>net2.0-client;net3.5-client</TargetFrameworks>
-    <VersionPrefix>0.0.3</VersionPrefix>
+    <VersionPrefix>0.0.4</VersionPrefix>
     <Description>Contains polyfills from the mscorlib for .NET Framework 2.0 and .NET Framework 3.5.
 
 Add:

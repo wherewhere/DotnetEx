@@ -1,5 +1,8 @@
 ﻿namespace System
 {
+    /// <summary>
+    /// Provides information about, and means to manipulate, the current environment and platform. This class cannot be inherited.
+    /// </summary>
     public static partial class EnvironmentEx
     {
         /// <summary>

@@ -4,11 +4,17 @@ using System.Runtime.Serialization;
 
 namespace System
 {
+    /// <summary>
+    /// Represents information about an operating system, such as the version and platform identifier. This class cannot be inherited.
+    /// </summary>
     public sealed class OperatingSystemEx : ISerializable, ICloneable
     {
         private readonly string _servicePack;
         private string _versionString;
 
+        /// <summary>
+        /// Get the name of operating system platform
+        /// </summary>
         public static string OSPlatform
         {
             get
@@ -36,6 +42,11 @@ namespace System
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OSPlatform"/> class, using the specified platform identifier value and version object.
+        /// </summary>
+        /// <param name="platform">One of the <see cref="PlatformID"/> values that indicates the operating system platform.</param>
+        /// <param name="version">A <see cref="System.Version"/> object that indicates the version of the operating system.</param>
         public OperatingSystemEx(PlatformID platform, Version version) : this(platform, version, null)
         {
         }
@@ -52,21 +63,51 @@ namespace System
             _servicePack = servicePack;
         }
 
+        /// <summary>
+        /// Populates a <see cref="SerializationInfo"/> object with the data necessary to deserialize this instance.
+        /// </summary>
+        /// <param name="info">The object to populate with serialization information.</param>
+        /// <param name="context">The place to store and retrieve serialized data. Reserved for future use.</param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             throw new PlatformNotSupportedException();
         }
 
+        /// <summary>
+        /// Gets a <see cref="PlatformID"/> enumeration value that identifies the operating system platform.
+        /// </summary>
+        /// <value>One of the <see cref="PlatformID"/> values.</value>
         public PlatformID Platform { get; }
 
+        /// <summary>
+        /// Gets the service pack version represented by this <see cref="OperatingSystem"/> object.
+        /// </summary>
+        /// <value>The service pack version, if service packs are supported and at least one is installed; otherwise, an empty string ("").</value>
         public string ServicePack => _servicePack ?? string.Empty;
 
+        /// <summary>
+        /// Gets a <see cref="Version"/> object that identifies the operating system.
+        /// </summary>
+        /// <value>A <see cref="Version"/> object that describes the major version, minor version, build, and revision numbers for the operating system.</value>
         public Version Version { get; }
 
+        /// <summary>
+        /// Creates an <see cref="OperatingSystem"/> object that is identical to this instance.
+        /// </summary>
+        /// <returns>An <see cref="OperatingSystem"/> object that is a copy of this instance.</returns>
         public object Clone() => new OperatingSystemEx(Platform, Version, _servicePack);
 
+        /// <summary>
+        /// Converts the value of this <see cref="OperatingSystem"/> object to its equivalent string representation.
+        /// </summary>
+        /// <returns>The string representation of the values returned by the <see cref="Platform"/>, <see cref="Version"/>, and <see cref="ServicePack"/> properties.</returns>
         public override string ToString() => VersionString;
 
+        /// <summary>
+        /// Gets the concatenated string representation of the platform identifier, version,
+        /// and service pack that are currently installed on the operating system.
+        /// </summary>
+        /// <value>The string representation of the values returned by the <see cref="Platform"/>, <see cref="Version"/>, and <see cref="ServicePack"/> properties.</value>
         public string VersionString
         {
             get

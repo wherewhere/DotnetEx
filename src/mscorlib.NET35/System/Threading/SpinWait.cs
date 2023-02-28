@@ -253,7 +253,13 @@ namespace System.Threading
         /// </summary>
         /// <param name="condition">A delegate to be executed over and over until it returns true.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="condition"/> argument is null.</exception>
-        public static void SpinUntil(Func<bool> condition)
+        public static void SpinUntil(
+#if NET20
+            FuncEx<bool>
+#else
+            Func<bool>
+#endif
+            condition)
         {
 #if DEBUG
             bool result =
@@ -276,7 +282,13 @@ namespace System.Threading
         /// <exception cref="System.ArgumentOutOfRangeException"><paramref name="timeout"/> is a negative number
         /// other than -1 milliseconds, which represents an infinite time-out -or- timeout is greater than
         /// <see cref="int.MaxValue"/>.</exception>
-        public static bool SpinUntil(Func<bool> condition, TimeSpan timeout)
+        public static bool SpinUntil(
+#if NET20
+            FuncEx<bool>
+#else
+            Func<bool>
+#endif
+            condition, TimeSpan timeout)
         {
             // Validate the timeout
             long totalMilliseconds = (long)timeout.TotalMilliseconds;
@@ -300,7 +312,13 @@ namespace System.Threading
         /// <exception cref="ArgumentNullException">The <paramref name="condition"/> argument is null.</exception>
         /// <exception cref="System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout"/> is a
         /// negative number other than -1, which represents an infinite time-out.</exception>
-        public static bool SpinUntil(Func<bool> condition, int millisecondsTimeout)
+        public static bool SpinUntil(
+#if NET20
+            FuncEx<bool>
+#else
+            Func<bool>
+#endif
+            condition, int millisecondsTimeout)
         {
             if (millisecondsTimeout < Timeout.Infinite)
             {
@@ -336,6 +354,6 @@ namespace System.Threading
             }
             return true;
         }
-        #endregion
+#endregion
     }
 }
