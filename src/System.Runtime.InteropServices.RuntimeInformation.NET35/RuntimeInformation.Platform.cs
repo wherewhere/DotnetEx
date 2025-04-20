@@ -2,21 +2,20 @@
 {
     public static partial class RuntimeInformation
     {
-        private static string s_osDescription;
-        private static readonly int s_osArchPlusOne;
+        private static string? s_osDescription;
 
         /// <summary>
         /// Gets a string that describes the operating system on which the app is running.
         /// </summary>
         /// <value>The description of the operating system on which the app is running.</value>
-        public static string OSDescription
+        public static string? OSDescription
         {
             get
             {
-                string osDescription = s_osDescription;
-                if (osDescription is null)
+                string? osDescription = s_osDescription;
+                if (osDescription == null)
                 {
-                    switch (OperatingSystemEx.OSPlatform)
+                    switch (OperatingSystem.OSPlatform)
                     {
                         case "WINDOWS":
                             OperatingSystem os = Environment.OSVersion;
@@ -37,6 +36,6 @@
         /// <summary>
         /// Operating system architecture.
         /// </summary>
-        public static Architecture OSArchitecture => EnvironmentEx.Is64BitOperatingSystem ? Architecture.X64 : Architecture.X86;
+        public static Architecture OSArchitecture => Environment.Is64BitOperatingSystem ? Architecture.X64 : Architecture.X86;
     }
 }

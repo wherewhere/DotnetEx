@@ -7,10 +7,7 @@ namespace System
     {
         [DllImport("kernel32.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool IsWow64Process(
-            [In] IntPtr hProcess,
-            [Out] out bool wow64Process
-        );
+        private static extern bool IsWow64Process([In] nint hProcess, [Out] out bool wow64Process);
 
         private static bool Is64BitOperatingSystemWhen32BitProcess
         {

@@ -1,10 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
     <OutputType>Exe</OutputType>
     <RootNamespace>DotnetEx.Test</RootNamespace>
-    <TargetFrameworks>net2.0-client;net3.5-client</TargetFrameworks>
+    <TargetFrameworks>net2.0;net3.5-client</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>

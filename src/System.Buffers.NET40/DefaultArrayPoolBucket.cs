@@ -2,7 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Buffers.Resources;
 using System.Diagnostics;
 using System.Threading;
@@ -43,10 +42,10 @@ namespace System.Buffers
 			/// <summary>
 			/// Takes an array from the bucket. If the bucket is empty, returns null.
 			/// </summary>
-			internal T[] Rent()
+			internal T[]? Rent()
 			{
-				T[][] buffers = _buffers;
-				T[] buffer = null;
+				T[]?[] buffers = _buffers;
+				T[]? buffer = null;
 
 				// While holding the lock, grab whatever is at the next available index and
 				// update the index. We do as little work as possible while holding the spin

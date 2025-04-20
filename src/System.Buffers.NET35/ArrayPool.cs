@@ -25,7 +25,7 @@ namespace System.Buffers
         /// <summary>
         /// The lazily-initialized shared pool instance.
         /// </summary>
-        private static ArrayPool<T> s_sharedInstance = null;
+        private static ArrayPool<T>? s_sharedInstance = null;
 
         /// <summary>
         /// Retrieves a shared <see cref="ArrayPool{T}"/> instance.
@@ -44,12 +44,8 @@ namespace System.Buffers
         public static ArrayPool<T> Shared
         {
             [MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
-            get
-            {
-                return Volatile.Read(ref s_sharedInstance) ?? EnsureSharedCreated();
-            }
+            get => Volatile.Read(ref s_sharedInstance) ?? EnsureSharedCreated();
         }
-
 
         /// <summary>
         /// Ensures that <see cref="s_sharedInstance"/> has been initialized to a pool and returns it.

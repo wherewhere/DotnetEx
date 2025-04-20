@@ -78,7 +78,7 @@ namespace System.Threading
         /// depends on the likelihood of the spin being successful and how long the wait would be but those are not accounted
         /// for here.
         /// </remarks>
-        internal static readonly int SpinCountforSpinBeforeWait = EnvironmentEx.IsSingleProcessor ? 1 : 35;
+        internal static readonly int SpinCountforSpinBeforeWait = Environment.IsSingleProcessor ? 1 : 35;
 
         // The number of times we've spun already.
         private int _count;
@@ -88,7 +88,7 @@ namespace System.Threading
         /// </summary>
         public int Count
         {
-            get => _count;
+            readonly get => _count;
             internal set
             {
                 Debug.Assert(value >= 0);
@@ -106,7 +106,7 @@ namespace System.Threading
         /// On a single-CPU machine, <see cref="SpinOnce()"/> always yields the processor. On machines with
         /// multiple CPUs, <see cref="SpinOnce()"/> may yield after an unspecified number of calls.
         /// </remarks>
-        public bool NextSpinWillYield => _count >= YieldThreshold || EnvironmentEx.IsSingleProcessor;
+        public readonly bool NextSpinWillYield => _count >= YieldThreshold || Environment.IsSingleProcessor;
 
         /// <summary>
         /// Performs a single spin.
@@ -167,7 +167,7 @@ namespace System.Threading
                     _count >= YieldThreshold &&
                     ((_count >= sleep1Threshold && sleep1Threshold >= 0) || (_count - YieldThreshold) % 2 == 0)
                 ) ||
-                EnvironmentEx.IsSingleProcessor)
+                Environment.IsSingleProcessor)
             {
                 //
                 // We must yield.
@@ -242,10 +242,7 @@ namespace System.Threading
         /// to <see cref="SpinOnce()"/> had been issued on this instance. If a <see cref="SpinWait"/> instance
         /// is reused many times, it may be useful to reset it to avoid yielding too soon.
         /// </remarks>
-        public void Reset()
-        {
-            _count = 0;
-        }
+        public void Reset() => _count = 0;
 
         #region Static Methods
         /// <summary>
@@ -253,20 +250,13 @@ namespace System.Threading
         /// </summary>
         /// <param name="condition">A delegate to be executed over and over until it returns true.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="condition"/> argument is null.</exception>
-        public static void SpinUntil(
-#if NET20
-            FuncEx<bool>
-#else
-            Func<bool>
-#endif
-            condition)
+        public static void SpinUntil(FuncEx<bool> condition)
         {
 #if DEBUG
-            bool result =
-#endif
-            SpinUntil(condition, Timeout.Infinite);
-#if DEBUG
+            bool result = SpinUntil(condition, Timeout.Infinite);
             Debug.Assert(result);
+#else
+            SpinUntil(condition, Timeout.Infinite);
 #endif
         }
 
@@ -279,22 +269,16 @@ namespace System.Threading
         /// or a TimeSpan that represents -1 milliseconds to wait indefinitely.</param>
         /// <returns>True if the condition is satisfied within the timeout; otherwise, false</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="condition"/> argument is null.</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException"><paramref name="timeout"/> is a negative number
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="timeout"/> is a negative number
         /// other than -1 milliseconds, which represents an infinite time-out -or- timeout is greater than
         /// <see cref="int.MaxValue"/>.</exception>
-        public static bool SpinUntil(
-#if NET20
-            FuncEx<bool>
-#else
-            Func<bool>
-#endif
-            condition, TimeSpan timeout)
+        public static bool SpinUntil(FuncEx<bool> condition, TimeSpan timeout)
         {
             // Validate the timeout
             long totalMilliseconds = (long)timeout.TotalMilliseconds;
             if (totalMilliseconds is < (-1) or > int.MaxValue)
             {
-                throw new System.ArgumentOutOfRangeException(
+                throw new ArgumentOutOfRangeException(
                     nameof(timeout), timeout, Strings.SpinWait_SpinUntil_TimeoutWrong);
             }
 
@@ -307,18 +291,12 @@ namespace System.Threading
         /// </summary>
         /// <param name="condition">A delegate to be executed over and over until it returns true.</param>
         /// <param name="millisecondsTimeout">The number of milliseconds to wait, or <see
-        /// cref="System.Threading.Timeout.Infinite"/> (-1) to wait indefinitely.</param>
+        /// cref="Timeout.Infinite"/> (-1) to wait indefinitely.</param>
         /// <returns>True if the condition is satisfied within the timeout; otherwise, false</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="condition"/> argument is null.</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout"/> is a
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="millisecondsTimeout"/> is a
         /// negative number other than -1, which represents an infinite time-out.</exception>
-        public static bool SpinUntil(
-#if NET20
-            FuncEx<bool>
-#else
-            Func<bool>
-#endif
-            condition, int millisecondsTimeout)
+        public static bool SpinUntil(FuncEx<bool> condition, int millisecondsTimeout)
         {
             if (millisecondsTimeout < Timeout.Infinite)
             {

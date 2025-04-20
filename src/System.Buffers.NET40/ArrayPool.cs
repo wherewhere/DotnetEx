@@ -21,11 +21,11 @@ namespace System.Buffers
     /// </para>
     /// </remarks>
     public abstract class ArrayPool<T>
-	{
-		/// <summary>
-		/// The lazily-initialized shared pool instance.
-		/// </summary>
-		private static ArrayPool<T> s_sharedInstance = null;
+    {
+        /// <summary>
+        /// The lazily-initialized shared pool instance.
+        /// </summary>
+        private static ArrayPool<T>? s_sharedInstance = null;
 
         /// <summary>
         /// Retrieves a shared <see cref="ArrayPool{T}"/> instance.
@@ -42,33 +42,29 @@ namespace System.Buffers
         /// The shared pool instance is created lazily on first access.
         /// </remarks>
         public static ArrayPool<T> Shared
-		{
-			[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
-			get
-			{
-				return Volatile.Read(ref s_sharedInstance) ?? EnsureSharedCreated();
-			}
-		}
+        {
+            [MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+            get => Volatile.Read(ref s_sharedInstance) ?? EnsureSharedCreated();
+        }
 
+        /// <summary>
+        /// Ensures that <see cref="s_sharedInstance"/> has been initialized to a pool and returns it.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static ArrayPool<T> EnsureSharedCreated()
+        {
+            Interlocked.CompareExchange(ref s_sharedInstance, Create(), null);
+            return s_sharedInstance;
+        }
 
-		/// <summary>
-		/// Ensures that <see cref="s_sharedInstance"/> has been initialized to a pool and returns it.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		private static ArrayPool<T> EnsureSharedCreated()
-		{
-			Interlocked.CompareExchange(ref s_sharedInstance, Create(), null);
-			return s_sharedInstance;
-		}
-
-		/// <summary>
-		/// Creates a new <see cref="ArrayPool{T}"/> instance using default configuration options.
-		/// </summary>
-		/// <returns>A new <see cref="ArrayPool{T}"/> instance.</returns>
-		public static ArrayPool<T> Create()
-		{
-			return new DefaultArrayPool<T>();
-		}
+        /// <summary>
+        /// Creates a new <see cref="ArrayPool{T}"/> instance using default configuration options.
+        /// </summary>
+        /// <returns>A new <see cref="ArrayPool{T}"/> instance.</returns>
+        public static ArrayPool<T> Create()
+        {
+            return new DefaultArrayPool<T>();
+        }
 
         /// <summary>
         /// Creates a new <see cref="ArrayPool{T}"/> instance using custom configuration options.
@@ -84,9 +80,9 @@ namespace System.Buffers
         /// in each bucket and with those arrays not exceeding <paramref name="maxArrayLength"/> in length.
         /// </remarks>
         public static ArrayPool<T> Create(int maxArrayLength, int maxArraysPerBucket)
-		{
-			return new DefaultArrayPool<T>(maxArrayLength, maxArraysPerBucket);
-		}
+        {
+            return new DefaultArrayPool<T>(maxArrayLength, maxArraysPerBucket);
+        }
 
         /// <summary>
         /// Retrieves a buffer that is at least the requested length.
@@ -125,5 +121,5 @@ namespace System.Buffers
         /// if it's determined that the pool already has enough buffers stored.
         /// </remarks>
         public abstract void Return(T[] array, bool clearArray = false);
-	}
+    }
 }

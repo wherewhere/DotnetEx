@@ -43,13 +43,17 @@ namespace System.Text
         private const int MAX_BUILDER_SIZE = 360;
 
         [ThreadStatic]
-        private static StringBuilder CachedInstance;
+        private static StringBuilder? CachedInstance;
 
+        /// <summary>
+        /// Get a StringBuilder for the specified capacity.
+        /// </summary>
+        /// <remarks>If a StringBuilder of an appropriate size is cached, it will be returned and the cache emptied.</remarks>
         public static StringBuilder Acquire(int capacity = StringBuilderEx.DefaultCapacity)
         {
             if (capacity <= MAX_BUILDER_SIZE)
             {
-                StringBuilder sb = CachedInstance;
+                StringBuilder? sb = CachedInstance;
                 if (sb != null)
                 {
                     // Avoid stringbuilder block fragmentation by getting a new StringBuilder
@@ -65,6 +69,9 @@ namespace System.Text
             return new StringBuilder(capacity);
         }
 
+        /// <summary>
+        /// Place the specified builder in the cache if it is not too big.
+        /// </summary>
         public static void Release(StringBuilder sb)
         {
             if (sb.Capacity <= MAX_BUILDER_SIZE)
@@ -73,6 +80,9 @@ namespace System.Text
             }
         }
 
+        /// <summary>
+        /// ToString() the stringbuilder, Release it to the cache, and return the resulting string.
+        /// </summary>
         public static string GetStringAndRelease(StringBuilder sb)
         {
             string result = sb.ToString();

@@ -7,7 +7,7 @@ namespace DotnetEx.Test.NET35
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine(EnvironmentEx.Is64BitProcess);
+            Console.WriteLine(Environment.Is64BitProcess);
             Console.WriteLine(RuntimeInformation.OSDescription);
             Console.WriteLine(RuntimeInformation.RuntimeIdentifier);
             Console.WriteLine(RuntimeInformation.FrameworkDescription);

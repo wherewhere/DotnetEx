@@ -40,10 +40,10 @@ namespace System.Buffers
             /// <summary>
             /// Takes an array from the bucket. If the bucket is empty, returns null.
             /// </summary>
-            internal T[] Rent()
+            internal T[]? Rent()
             {
-                T[][] buffers = _buffers;
-                T[] buffer = null;
+                T[]?[] buffers = _buffers;
+                T[]? buffer = null;
 
                 bool allocateBuffer = false;
 

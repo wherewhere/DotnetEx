@@ -21,7 +21,7 @@ namespace System.Buffers
 		/// <summary>
 		/// Lazily-allocated empty array used when arrays of length 0 are requested.
 		/// </summary>
-		private static T[] s_emptyArray; // we support contracts earlier than those with Array.Empty<T>()
+		private static T[]? s_emptyArray; // we support contracts earlier than those with Array.Empty<T>()
 
 		private readonly Bucket[] _buckets;
 
@@ -86,10 +86,10 @@ namespace System.Buffers
 			{
 				// No need for events with the empty array. Our pool is effectively infinite
 				// and we'll never allocate for rents and never store for returns.
-				return s_emptyArray ?? (s_emptyArray = new T[0]);
+				return s_emptyArray ??= [];
 			}
 
-			T[] buffer = null;
+			T[]? buffer;
 
 			int index = Utilities.SelectBucketIndex(minimumLength);
 			if (index < _buckets.Length)

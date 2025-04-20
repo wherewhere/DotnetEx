@@ -19,14 +19,22 @@ namespace System
     /// </remarks>
     public class Progress<T> : IProgress<T>
     {
-        /// <summary>The synchronization context captured upon construction.  This will never be null.</summary>
-        private readonly SynchronizationContext _synchronizationContext;
-        /// <summary>The handler specified to the constructor.  This may be null.</summary>
-        private readonly Action<T> _handler;
-        /// <summary>A cached delegate used to post invocation to the synchronization context.</summary>
+        /// <summary>
+        /// The synchronization context captured upon construction. This will never be null.
+        /// </summary>
+        private readonly SynchronizationContext? _synchronizationContext;
+        /// <summary>
+        /// The handler specified to the constructor. This may be null.
+        /// </summary>
+        private readonly Action<T>? _handler;
+        /// <summary>
+        /// A cached delegate used to post invocation to the synchronization context.
+        /// </summary>
         private readonly SendOrPostCallback _invokeHandlers;
 
-        /// <summary>Initializes the <see cref="Progress{T}"/>.</summary>
+        /// <summary>
+        /// Initializes the <see cref="Progress{T}"/>.
+        /// </summary>
         public Progress()
         {
             // Capture the current synchronization context.
@@ -36,7 +44,9 @@ namespace System
             _invokeHandlers = new SendOrPostCallback(InvokeHandlers);
         }
 
-        /// <summary>Initializes the <see cref="Progress{T}"/> with the specified callback.</summary>
+        /// <summary>
+        /// Initializes the <see cref="Progress{T}"/> with the specified callback.
+        /// </summary>
         /// <param name="handler">
         /// A handler to invoke for each reported progress value.  This handler will be invoked
         /// in addition to any delegates registered with the <see cref="ProgressChanged"/> event.
@@ -52,49 +62,59 @@ namespace System
             _handler = handler;
         }
 
-        /// <summary>Raised for each reported progress value.</summary>
+        /// <summary>
+        /// Raised for each reported progress value.
+        /// </summary>
         /// <remarks>
         /// Handlers registered with this event will be invoked on the
-        /// <see cref="System.Threading.SynchronizationContext"/> captured when the instance was constructed.
+        /// <see cref="SynchronizationContext"/> captured when the instance was constructed.
         /// </remarks>
-        public event EventHandlerEx<T> ProgressChanged;
+        public event EventHandlerEx<T>? ProgressChanged;
 
-        /// <summary>Reports a progress change.</summary>
+        /// <summary>
+        /// Reports a progress change.
+        /// </summary>
         /// <param name="value">The value of the updated progress.</param>
         protected virtual void OnReport(T value)
         {
             // If there's no handler, don't bother going through the sync context.
             // Inside the callback, we'll need to check again, in case
             // an event handler is removed between now and then.
-            Action<T> handler = _handler;
-            EventHandlerEx<T> changedEvent = ProgressChanged;
+            Action<T>? handler = _handler;
+            EventHandlerEx<T>? changedEvent = ProgressChanged;
             if (handler != null || changedEvent != null)
             {
                 // Post the processing to the sync context.
                 // (If T is a value type, it will get boxed here.)
-                _synchronizationContext.Post(_invokeHandlers, value);
+                _synchronizationContext!.Post(_invokeHandlers, value);
             }
         }
 
-        /// <summary>Reports a progress change.</summary>
+        /// <summary>
+        /// Reports a progress change.
+        /// </summary>
         /// <param name="value">The value of the updated progress.</param>
-        void IProgress<T>.Report(T value) { OnReport(value); }
+        void IProgress<T>.Report(T value) => OnReport(value);
 
-        /// <summary>Invokes the action and event callbacks.</summary>
+        /// <summary>
+        /// Invokes the action and event callbacks.
+        /// </summary>
         /// <param name="state">The progress value.</param>
-        private void InvokeHandlers(object state)
+        private void InvokeHandlers(object? state)
         {
             T value = (T)state!;
 
-            Action<T> handler = _handler;
-            EventHandlerEx<T> changedEvent = ProgressChanged;
+            Action<T>? handler = _handler;
+            EventHandlerEx<T>? changedEvent = ProgressChanged;
 
             handler?.Invoke(value);
             changedEvent?.Invoke(this, value);
         }
     }
 
-    /// <summary>Holds static values for <see cref="Progress{T}"/>.</summary>
+    /// <summary>
+    /// Holds static values for <see cref="Progress{T}"/>.
+    /// </summary>
     /// <remarks>This avoids one static instance per type T.</remarks>
     internal static class ProgressStatics
     {

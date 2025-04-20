@@ -87,13 +87,7 @@ namespace System.Net
         /// Gets the Internet Protocol (IP) address family.
         /// </summary>
         /// <value>One of the <see cref="AddressFamily"/> values.</value>
-        public override AddressFamily AddressFamily
-        {
-            get
-            {
-                return _family;
-            }
-        }
+        public override AddressFamily AddressFamily => _family;
 
         /// <summary>
         /// Gets the port number of the <see cref="DnsEndPoint"/>.

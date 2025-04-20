@@ -14,9 +14,6 @@ namespace System.Collections.Generic
         /// Gets the number of elements in the collection.
         /// </summary>
         /// <value>The number of elements in the collection.</value>
-        int Count
-        {
-            get;
-        }
+        int Count { get; }
     }
 }

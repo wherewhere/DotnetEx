@@ -5,6 +5,8 @@
 // ==--==
 //
 // <OWNER>Microsoft</OWNER>
+using System.Diagnostics.CodeAnalysis;
+
 namespace System.Threading
 {
     /// <summary>
@@ -110,9 +112,9 @@ namespace System.Threading
         /// <param name="location">The field to read.</param>
         /// <returns>The value that was read. This value is the latest written by any processor in
         /// the computer, regardless of the number of processors or the state of processor cache.</returns>
-        public static IntPtr Read(ref IntPtr location)
+        public static nint Read(ref nint location)
         {
-            IntPtr result = location;
+            nint result = location;
             Thread.MemoryBarrier();
 
             return result;
@@ -206,9 +208,9 @@ namespace System.Threading
         /// <param name="location">The field to read.</param>
         /// <returns>The value that was read. This value is the latest written by any processor in
         /// the computer, regardless of the number of processors or the state of processor cache.</returns>
-        public static UIntPtr Read(ref UIntPtr location)
+        public static nuint Read(ref nuint location)
         {
-            UIntPtr result = location;
+            nuint result = location;
             Thread.MemoryBarrier();
 
             return result;
@@ -224,7 +226,7 @@ namespace System.Threading
         /// <returns>The reference to <typeparamref name="T"/> that was read. This reference is the latest
         /// written by any processor in the computer, regardless of the number of processors or the state of
         /// processor cache.</returns>
-        public static T Read<T>(ref T location) where T : class
+        public static T Read<T>([NotNullIfNotNull(nameof(location))] ref T location) where T : class?
         {
             T result = location;
             Thread.MemoryBarrier();
@@ -322,7 +324,7 @@ namespace System.Threading
         /// <param name="location">The field where the value is written.</param>
         /// <param name="value">The value to write. The value is written immediately so that it is visible
         /// to all processors in the computer.</param>
-        public static void Write(ref IntPtr location, IntPtr value)
+        public static void Write(ref nint location, nint value)
         {
             Thread.MemoryBarrier();
             location = value;
@@ -408,7 +410,7 @@ namespace System.Threading
         /// <param name="location">The field where the value is written.</param>
         /// <param name="value">The value to write. The value is written immediately so that it is visible
         /// to all processors in the computer.</param>
-        public static void Write(ref UIntPtr location, UIntPtr value)
+        public static void Write(ref nuint location, nuint value)
         {
             Thread.MemoryBarrier();
             location = value;
@@ -423,7 +425,7 @@ namespace System.Threading
         /// <param name="value">The object reference to write. The reference is written immediately so that it
         /// is visible to all processors in the computer.</param>
         /// <typeparam name="T">The type of field to write. This must be a reference type, not a value type.</typeparam>
-        public static void Write<T>(ref T location, T value) where T : class
+        public static void Write<T>([NotNullIfNotNull(nameof(location))] ref T location, T value) where T : class?
         {
             Thread.MemoryBarrier();
             location = value;

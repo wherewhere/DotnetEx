@@ -2,15 +2,19 @@
 
   <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
     <RootNamespace></RootNamespace>
-    <TargetFrameworks>net2.0-client;net3.5-client</TargetFrameworks>
+    <TargetFrameworks>net2.0;net3.5-client</TargetFrameworks>
     <Description>Contains polyfills from the mscorlib for .NET Framework 2.0 and .NET Framework 3.5.
 
 Add:
       System.Func
       System.Action
+      System.Index
       System.IProgress
+      System.HashCode
       System.Progress
+      System.Range
       System.Collections.Generic
       System.Collections.Generic.IReadOnlyCollection
       System.Collections.Generic.IReadOnlyDictionary
@@ -46,6 +50,26 @@ Extensions:
       System.Text.StringBuilderEx:
       - Clear</Description>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <PolySharpIncludeGeneratedTypes>
+      System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute;
+      System.Diagnostics.CodeAnalysis.NotNullAttribute;
+      System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute;
+      System.Diagnostics.CodeAnalysis.NotNullWhenAttribute;
+      System.Index;
+      System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
+      System.Runtime.CompilerServices.IsExternalInit
+    </PolySharpIncludeGeneratedTypes>
+    <PolySharpUsePublicAccessibilityForGeneratedTypes>true</PolySharpUsePublicAccessibilityForGeneratedTypes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PolySharp" Version="1.15.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Resources\Strings.Designer.cs">

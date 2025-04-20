@@ -9,7 +9,6 @@ namespace System.Runtime.InteropServices
     public static partial class RuntimeInformation
     {
         private const string FrameworkName = ".NET Framework";
-        private static string s_frameworkDescription;
 
         /// <summary>
         /// Gets the name of the .NET installation on which an app is running.
@@ -19,21 +18,25 @@ namespace System.Runtime.InteropServices
         {
             get
             {
-                if (s_frameworkDescription == null)
+                if (typeof(object).Assembly.GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), true) is [AssemblyInformationalVersionAttribute version, ..])
                 {
-                    string versionString = ((AssemblyInformationalVersionAttribute)typeof(object).Assembly.GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), true).FirstOrDefault()).InformationalVersion;
+                    string versionString = version.InformationalVersion;
 
                     // Strip the git hash if there is one
                     int plusIndex = versionString.IndexOf('+');
                     if (plusIndex != -1)
                     {
-                        versionString = versionString.Substring(0, plusIndex);
+                        versionString = versionString[..plusIndex];
                     }
 
-                    s_frameworkDescription = !string.IsNullOrEmpty(versionString.Trim()) ? $"{FrameworkName} {versionString}" : FrameworkName;
+                    field = !string.IsNullOrEmpty(versionString.Trim()) ? $"{FrameworkName} {versionString}" : FrameworkName;
+                }
+                else
+                {
+                    field = FrameworkName;
                 }
 
-                return s_frameworkDescription;
+                return field;
             }
         }
 
@@ -51,7 +54,7 @@ namespace System.Runtime.InteropServices
         {
             get
             {
-                return OperatingSystemEx.OSPlatform switch
+                return OperatingSystem.OSPlatform switch
                 {
                     "WINDOWS" => $"win-{OSArchitecture.ToString().ToLower()}",
                     "LINUX" => $"linux-{OSArchitecture.ToString().ToLower()}",

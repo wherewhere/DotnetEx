@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Nullable>enable</Nullable>
     <RootNamespace>System.Buffers</RootNamespace>
-    <TargetFrameworks>net2.0-client;net3.5-client</TargetFrameworks>
+    <TargetFrameworks>net2.0;net3.5-client</TargetFrameworks>
     <Description>Implementation of the System.Buffers library without logging for .NET Framework 2.0 and .NET Framework 3.5.</Description>
   </PropertyGroup>
 

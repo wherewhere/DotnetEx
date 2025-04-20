@@ -2,8 +2,6 @@
 {
     public static partial class RuntimeInformation
     {
-        private static string s_osDescription;
-
         /// <summary>
         /// Gets a string that describes the operating system on which the app is running.
         /// </summary>
@@ -12,17 +10,17 @@
         {
             get
             {
-                string osDescription = s_osDescription;
-                if (osDescription is null)
+                string osDescription = field;
+                if (osDescription == null)
                 {
-                    switch (OperatingSystemEx.OSPlatform)
+                    switch (OperatingSystem.OSPlatform)
                     {
                         case "WINDOWS":
                             OperatingSystem os = Environment.OSVersion;
                             Version v = os.Version;
 
                             const string Version = "Microsoft Windows";
-                            s_osDescription = osDescription = string.IsNullOrEmpty(os.ServicePack) ?
+                            field = osDescription = string.IsNullOrEmpty(os.ServicePack) ?
                                 $"{Version} {(uint)v.Major}.{(uint)v.Minor}.{(uint)v.Build}" :
                                 $"{Version} {(uint)v.Major}.{(uint)v.Minor}.{(uint)v.Build} {os.ServicePack}";
                             break;
