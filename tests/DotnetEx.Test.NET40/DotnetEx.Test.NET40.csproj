@@ -1,11 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
-    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <IsPackable>false</IsPackable>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
     <RootNamespace>DotnetEx.Test</RootNamespace>
-    <TargetFramework>net4.0-client</TargetFramework>
+    <TargetFrameworks>net4.0-client</TargetFrameworks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="nunit" Version="3.14.0" IsImplicitlyDefined="true" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" IsImplicitlyDefined="true" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\System.Runtime.InteropServices.RuntimeInformation.NET40\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET40.csproj" />

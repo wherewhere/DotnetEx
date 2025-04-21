@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿#if COMP_NETSTANDARD1_1
+[assembly: System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Runtime.InteropServices.RuntimeInformation))]
+#else
 using System.Reflection;
 
 namespace System.Runtime.InteropServices
@@ -70,3 +72,4 @@ namespace System.Runtime.InteropServices
         public static bool IsOSPlatform(OSPlatform osPlatform) => OperatingSystemEx.IsOSPlatform(osPlatform.Name);
     }
 }
+#endif

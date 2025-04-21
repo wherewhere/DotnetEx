@@ -2,10 +2,18 @@
 
   <PropertyGroup>
     <Nullable>enable</Nullable>
-    <RootNamespace>System.Runtime.InteropServices.RuntimeInformation</RootNamespace>
-    <TargetFrameworks>net2.0;net3.5-client</TargetFrameworks>
+    <RootNamespace>System.Runtime.InteropServices</RootNamespace>
+    <TargetFrameworks>net2.0;net3.5-client;net4.5</TargetFrameworks>
     <Description>Contains polyfills of `RuntimeInformation` class from the System.Runtime.InteropServices.RuntimeInformation library for .NET Framework 2.0 and .NET Framework 3.5.</Description>
   </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard1.1'))">
+    <DefineConstants>$(DefineConstants);COMP_NETSTANDARD1_1</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard1.1'))">
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\mscorlib.NET35\mscorlib.Polyfill.NET35.csproj" />

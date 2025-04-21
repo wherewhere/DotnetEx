@@ -1,4 +1,7 @@
-﻿using System.Runtime.InteropServices.Resources;
+﻿#if COMP_NETSTANDARD1_1
+[assembly: System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Runtime.InteropServices.OSPlatform))]
+#else
+using System.Runtime.InteropServices.Resources;
 
 namespace System.Runtime.InteropServices
 {
@@ -123,3 +126,4 @@ namespace System.Runtime.InteropServices
         }
     }
 }
+#endif

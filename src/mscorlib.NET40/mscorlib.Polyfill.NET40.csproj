@@ -4,7 +4,7 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <RootNamespace></RootNamespace>
-    <TargetFramework>net4.0-client</TargetFramework>
+    <TargetFrameworks>net4.0-client;net4.5;net4.6.1</TargetFrameworks>
     <Description>Contains polyfills from the mscorlib for .NET Framework 4.0.
 
 Add:
@@ -17,12 +17,17 @@ Extensions:
   <PropertyGroup>
     <PolySharpIncludeGeneratedTypes>
       System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute;
+      System.Diagnostics.CodeAnalysis.NotNullAttribute;
       System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute;
       System.Diagnostics.CodeAnalysis.NotNullWhenAttribute;
-      System.Index;
-      System.Runtime.CompilerServices.IsExternalInit
+      System.Runtime.CompilerServices.IsExternalInit;
+      System.Runtime.CompilerServices.CallerArgumentExpressionAttribute
     </PolySharpIncludeGeneratedTypes>
-    <PolySharpUsePublicAccessibilityForGeneratedTypes>true</PolySharpUsePublicAccessibilityForGeneratedTypes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard2.0'))">
+    <DefineConstants>$(DefineConstants);COMP_NETSTANDARD2_0</DefineConstants>
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +35,15 @@ Extensions:
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard2.0'))">
+    <PackageReference Include="Microsoft.Bcl.HashCode" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Polyfill.System.Buffers.NET40" />
+    <InternalsVisibleTo Include="Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET40" />
   </ItemGroup>
 
   <ItemGroup>

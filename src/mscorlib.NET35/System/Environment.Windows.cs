@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿#if !NET40_OR_GREATER
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace System
@@ -27,3 +28,4 @@ namespace System
         }
     }
 }
+#endif

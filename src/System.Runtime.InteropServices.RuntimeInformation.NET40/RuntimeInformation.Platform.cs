@@ -1,4 +1,5 @@
-﻿namespace System.Runtime.InteropServices
+﻿#if !COMP_NETSTANDARD1_1
+namespace System.Runtime.InteropServices
 {
     public static partial class RuntimeInformation
     {
@@ -37,3 +38,4 @@
         public static Architecture OSArchitecture => Environment.Is64BitOperatingSystem ? Architecture.X64 : Architecture.X86;
     }
 }
+#endif

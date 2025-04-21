@@ -1,18 +1,6 @@
-﻿// ==++==
-// 
-//   Copyright (c) Microsoft Corporation.  All rights reserved.
-// 
-// ==--==
-/*============================================================
-**
-** Class:  String
-**
-**
-** Purpose: Your favorite String class.  Native methods 
-** are implemented in StringNative.cpp
-**
-**
-===========================================================*/
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
@@ -41,10 +29,10 @@ namespace System
             /// <exception cref="ArgumentNullException"><paramref name="values"/> is <see langword="null"/>.</exception>
             public static string Join(string? separator, params object?[] values)
             {
-                if (values == null)
-                {
-                    throw new ArgumentNullException("values");
-                }
+#if NET40_OR_GREATER
+                return string.Join(separator, values);
+#else
+                ArgumentNullException.ThrowIfNull(values);
 
                 if (values.Length == 0 || values[0] == null)
                 {
@@ -75,6 +63,7 @@ namespace System
                     }
                 }
                 return StringBuilderCache.GetStringAndRelease(result);
+#endif
             }
 
             /// <summary>
@@ -89,6 +78,9 @@ namespace System
             /// <exception cref="ArgumentNullException"><paramref name="values"/> is <see langword="null"/>.</exception>
             public static string Join<T>(string? separator, IEnumerable<T> values)
             {
+#if NET40_OR_GREATER
+                return string.Join(separator, values);
+#else
                 if (values == null)
                 {
                     throw new ArgumentNullException("values");
@@ -129,6 +121,7 @@ namespace System
                     }
                 }
                 return StringBuilderCache.GetStringAndRelease(result);
+#endif
             }
 
             /// <summary>
@@ -143,10 +136,10 @@ namespace System
             /// <exception cref="ArgumentNullException"><paramref name="values"/> is <see langword="null"/>.</exception>
             public static string Join(string? separator, IEnumerable<string?> values)
             {
-                if (values == null)
-                {
-                    throw new ArgumentNullException("values");
-                }
+#if NET40_OR_GREATER
+                return string.Join(separator, values);
+#else
+                ArgumentNullException.ThrowIfNull(values);
 
                 separator ??= string.Empty;
 
@@ -171,6 +164,7 @@ namespace System
                     }
                 }
                 return StringBuilderCache.GetStringAndRelease(result);
+#endif
             }
 
             /// <summary>
@@ -181,6 +175,9 @@ namespace System
             /// or if <paramref name="value"/> consists exclusively of white-space characters.</returns>
             public static bool IsNullOrWhiteSpace([NotNullWhen(false)] string? value)
             {
+#if NET40_OR_GREATER
+                return string.IsNullOrWhiteSpace(value);
+#else
                 if (value == null)
                 {
                     return true;
@@ -195,6 +192,7 @@ namespace System
                 }
 
                 return true;
+#endif
             }
         }
     }

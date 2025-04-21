@@ -88,6 +88,15 @@ namespace System.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Non-negative number required. 的本地化字符串。
+        /// </summary>
+        internal static string ArgumentOutOfRange_NeedNonNegNum {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_NeedNonNegNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Number must be either non-negative and less than or equal to Int32.MaxValue or -1. 的本地化字符串。
         /// </summary>
         internal static string ArgumentOutOfRange_NeedNonNegOrNegative1 {

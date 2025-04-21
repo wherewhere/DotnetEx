@@ -1,4 +1,10 @@
-﻿using System.Net.Sockets;
+﻿#if NET40_OR_GREATER
+[assembly: System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Net.DnsEndPoint))]
+#else
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+
+using System.Net.Sockets;
 using System.Resources;
 
 namespace System.Net
@@ -96,3 +102,4 @@ namespace System.Net
         public int Port { get; }
     }
 }
+#endif

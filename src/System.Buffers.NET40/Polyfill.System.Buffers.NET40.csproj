@@ -1,11 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Nullable>enable</Nullable>
     <RootNamespace>System.Buffers</RootNamespace>
-    <TargetFramework>net4.0-client</TargetFramework>
+    <TargetFrameworks>net4.0-client;net4.5</TargetFrameworks>
     <Description>Implementation of the System.Buffers library without logging for .NET Framework 4.0.</Description>
   </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard1.1'))">
+    <DefineConstants>$(DefineConstants);COMP_NETSTANDARD1_1</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard1.1'))">
+    <PackageReference Include="System.Buffers" Version="4.5.1" IsImplicitlyDefined="true" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\mscorlib.NET40\mscorlib.Polyfill.NET40.csproj" />

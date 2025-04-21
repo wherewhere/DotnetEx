@@ -7,6 +7,8 @@ namespace System.Runtime.CompilerServices
     /// Indicates that a method is an extension method, or that a class or assembly contains extension methods.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Assembly)]
-    public sealed class ExtensionAttribute : Attribute { }
+    internal sealed class ExtensionAttribute : Attribute;
 }
+#else
+[assembly: System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Runtime.CompilerServices.ExtensionAttribute))]
 #endif

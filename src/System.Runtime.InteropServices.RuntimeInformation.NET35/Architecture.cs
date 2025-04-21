@@ -1,4 +1,7 @@
-﻿namespace System.Runtime.InteropServices
+﻿#if COMP_NETSTANDARD1_1
+[assembly: System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Runtime.InteropServices.Architecture))]
+#else
+namespace System.Runtime.InteropServices
 {
     /// <summary>
     /// Indicates the processor architecture.
@@ -51,3 +54,4 @@
         Ppc64le
     }
 }
+#endif

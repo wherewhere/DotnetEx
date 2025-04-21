@@ -1,4 +1,7 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+﻿#if NET45_OR_GREATER
+[assembly: System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Progress<>))]
+#else
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using System.Diagnostics;
@@ -13,11 +16,11 @@ namespace System
     /// <remarks>
     /// Any handler provided to the constructor or event handlers registered with
     /// the <see cref="ProgressChanged"/> event are invoked through a
-    /// <see cref="System.Threading.SynchronizationContext"/> instance captured
+    /// <see cref="SynchronizationContext"/> instance captured
     /// when the instance is constructed.  If there is no current SynchronizationContext
     /// at the time of construction, the callbacks will be invoked on the ThreadPool.
     /// </remarks>
-    public class Progress<T> : IProgress<T>
+    public class Progress<T> : IProgress<T> where T : EventArgs
     {
         /// <summary>
         /// The synchronization context captured upon construction. This will never be null.
@@ -54,11 +57,10 @@ namespace System
         /// the <see cref="Progress{T}"/> at construction, it's possible that this handler instance
         /// could be invoked concurrently with itself.
         /// </param>
-        /// <exception cref="System.ArgumentNullException">The <paramref name="handler"/> is null (Nothing in Visual Basic).</exception>
+        /// <exception cref="ArgumentNullException">The <paramref name="handler"/> is null (Nothing in Visual Basic).</exception>
         public Progress(Action<T> handler) : this()
         {
-            ArgumentNullExceptionEx.ThrowIfNull(handler);
-
+            ArgumentNullException.ThrowIfNull(handler);
             _handler = handler;
         }
 
@@ -69,7 +71,7 @@ namespace System
         /// Handlers registered with this event will be invoked on the
         /// <see cref="SynchronizationContext"/> captured when the instance was constructed.
         /// </remarks>
-        public event EventHandlerEx<T>? ProgressChanged;
+        public event EventHandler<T>? ProgressChanged;
 
         /// <summary>
         /// Reports a progress change.
@@ -81,7 +83,7 @@ namespace System
             // Inside the callback, we'll need to check again, in case
             // an event handler is removed between now and then.
             Action<T>? handler = _handler;
-            EventHandlerEx<T>? changedEvent = ProgressChanged;
+            EventHandler<T>? changedEvent = ProgressChanged;
             if (handler != null || changedEvent != null)
             {
                 // Post the processing to the sync context.
@@ -105,7 +107,7 @@ namespace System
             T value = (T)state!;
 
             Action<T>? handler = _handler;
-            EventHandlerEx<T>? changedEvent = ProgressChanged;
+            EventHandler<T>? changedEvent = ProgressChanged;
 
             handler?.Invoke(value);
             changedEvent?.Invoke(this, value);
@@ -122,3 +124,4 @@ namespace System
         internal static readonly SynchronizationContext DefaultContext = new();
     }
 }
+#endif

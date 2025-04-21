@@ -3,9 +3,17 @@
   <PropertyGroup>
     <Nullable>enable</Nullable>
     <RootNamespace>System.Buffers</RootNamespace>
-    <TargetFrameworks>net2.0;net3.5-client</TargetFrameworks>
+    <TargetFrameworks>net2.0;net3.5-client;net4.5</TargetFrameworks>
     <Description>Implementation of the System.Buffers library without logging for .NET Framework 2.0 and .NET Framework 3.5.</Description>
   </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard1.1'))">
+    <DefineConstants>$(DefineConstants);COMP_NETSTANDARD1_1</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard1.1'))">
+    <PackageReference Include="System.Buffers" Version="4.5.1" IsImplicitlyDefined="true" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\mscorlib.NET35\mscorlib.Polyfill.NET35.csproj" />

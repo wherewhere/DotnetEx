@@ -1,13 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <IsPackable>false</IsPackable>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
     <RootNamespace>DotnetEx.Test</RootNamespace>
-    <TargetFrameworks>net2.0;net3.5-client</TargetFrameworks>
+    <TargetFrameworks>net2.0;net3.5-client;net4.0-client</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\System.Runtime.InteropServices.RuntimeInformation.NET35\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET35.csproj" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" IsImplicitlyDefined="true" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
   </ItemGroup>
+
+  <Choose>
+    <When Condition="$(TargetFramework) == 'net2.0'">
+      <ItemGroup>
+        <PackageReference Include="nunit" Version="3.11.0" IsImplicitlyDefined="true" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <PackageReference Include="nunit" Version="3.14.0" IsImplicitlyDefined="true" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+
+  <Choose>
+    <When Condition="$(TargetFramework) == 'net4.0-client'">
+      <ItemGroup>
+        <ProjectReference Include="..\..\src\System.Runtime.InteropServices.RuntimeInformation.NET35\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET35.csproj">
+          <SetTargetFramework>TargetFramework=net3.5-client</SetTargetFramework>
+        </ProjectReference>
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <ProjectReference Include="..\..\src\System.Runtime.InteropServices.RuntimeInformation.NET35\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET35.csproj" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
 
 </Project>

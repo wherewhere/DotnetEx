@@ -120,6 +120,9 @@
   <data name="ArgumentNull_Generic" xml:space="preserve">
     <value>Value cannot be null.</value>
   </data>
+  <data name="ArgumentOutOfRange_NeedNonNegNum" xml:space="preserve">
+    <value>Non-negative number required.</value>
+  </data>
   <data name="ArgumentOutOfRange_NeedNonNegOrNegative1" xml:space="preserve">
     <value>Number must be either non-negative and less than or equal to Int32.MaxValue or -1.</value>
   </data>
