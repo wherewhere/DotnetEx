@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\System.Runtime.InteropServices.RuntimeInformation.NET40\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET40.csproj" />
+    <ProjectReference Include="..\..\src\System.Buffers.NET40\Polyfill.System.Buffers.NET40.csproj" />
   </ItemGroup>
 
 </Project>

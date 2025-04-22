@@ -29,14 +29,14 @@
   <Choose>
     <When Condition="$(TargetFramework) == 'net4.0-client'">
       <ItemGroup>
-        <ProjectReference Include="..\..\src\System.Runtime.InteropServices.RuntimeInformation.NET35\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET35.csproj">
+        <ProjectReference Include="..\..\src\System.Buffers.NET35\Polyfill.System.Buffers.NET35.csproj">
           <SetTargetFramework>TargetFramework=net3.5-client</SetTargetFramework>
         </ProjectReference>
       </ItemGroup>
     </When>
     <Otherwise>
       <ItemGroup>
-        <ProjectReference Include="..\..\src\System.Runtime.InteropServices.RuntimeInformation.NET35\Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET35.csproj" />
+        <ProjectReference Include="..\..\src\System.Buffers.NET35\Polyfill.System.Buffers.NET35.csproj" />
       </ItemGroup>
     </Otherwise>
   </Choose>

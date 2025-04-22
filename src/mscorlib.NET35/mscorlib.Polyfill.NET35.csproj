@@ -18,6 +18,7 @@ Add:
       System.Collections.Generic.IReadOnlyList
       System.Collections.Generic.IReadOnlySet
       System.Net.DnsEndPoint
+      System.Numerics.BitOperations
       System.Threading.Volatile
 
 Extensions:
