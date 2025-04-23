@@ -257,7 +257,7 @@ namespace System.Numerics
                 // Using deBruijn sequence, k=2, n=5 (2^5=32) : 0b_0000_0111_1100_0100_1010_1100_1101_1101u
                 ref Log2DeBruijn[0],
                 // uint|long -> IntPtr cast on 32-bit platforms does expensive overflow checks not needed here
-                (IntPtr)(int)((value * 0x07C4ACDDu) >> 27));
+                (nint)(int)((value * 0x07C4ACDDu) >> 27));
         }
 
         /// <summary>
@@ -347,7 +347,7 @@ namespace System.Numerics
                 // Using deBruijn sequence, k=2, n=5 (2^5=32) : 0b_0000_0111_0111_1100_1011_0101_0011_0001u
                 ref TrailingZeroCountDeBruijn[0],
                 // uint|long -> IntPtr cast on 32-bit platforms does expensive overflow checks not needed here
-                (IntPtr)(int)(((value & (uint)-(int)value) * 0x077CB531u) >> 27)); // Multi-cast mitigates redundant conv.u8
+                (nint)(int)(((value & (uint)-(int)value) * 0x077CB531u) >> 27)); // Multi-cast mitigates redundant conv.u8
         }
 
         /// <summary>
@@ -538,7 +538,7 @@ namespace System.Numerics
             internal static uint Crc32C(uint crc, byte data)
             {
                 ref uint lookupTable = ref s_crcTable[0];
-                crc = Unsafe.Add(ref lookupTable, (byte)(crc ^ data)) ^ (crc >> 8);
+                crc = Unsafe.Add(ref lookupTable, (nint)(byte)(crc ^ data)) ^ (crc >> 8);
 
                 return crc;
             }
@@ -547,9 +547,9 @@ namespace System.Numerics
             {
                 ref uint lookupTable = ref s_crcTable[0];
 
-                crc = Unsafe.Add(ref lookupTable, (byte)(crc ^ (byte)data)) ^ (crc >> 8);
+                crc = Unsafe.Add(ref lookupTable, (nint)(byte)(crc ^ (byte)data)) ^ (crc >> 8);
                 data >>= 8;
-                crc = Unsafe.Add(ref lookupTable, (byte)(crc ^ data)) ^ (crc >> 8);
+                crc = Unsafe.Add(ref lookupTable, (nint)(byte)(crc ^ data)) ^ (crc >> 8);
 
                 return crc;
             }
@@ -563,13 +563,13 @@ namespace System.Numerics
             [MethodImpl((MethodImplOptions)0x100)]
             private static uint Crc32CCore(ref uint lookupTable, uint crc, uint data)
             {
-                crc = Unsafe.Add(ref lookupTable, (byte)(crc ^ (byte)data)) ^ (crc >> 8);
+                crc = Unsafe.Add(ref lookupTable, (nint)(byte)(crc ^ (byte)data)) ^ (crc >> 8);
                 data >>= 8;
-                crc = Unsafe.Add(ref lookupTable, (byte)(crc ^ (byte)data)) ^ (crc >> 8);
+                crc = Unsafe.Add(ref lookupTable, (nint)(byte)(crc ^ (byte)data)) ^ (crc >> 8);
                 data >>= 8;
-                crc = Unsafe.Add(ref lookupTable, (byte)(crc ^ (byte)data)) ^ (crc >> 8);
+                crc = Unsafe.Add(ref lookupTable, (nint)(byte)(crc ^ (byte)data)) ^ (crc >> 8);
                 data >>= 8;
-                crc = Unsafe.Add(ref lookupTable, (byte)(crc ^ data)) ^ (crc >> 8);
+                crc = Unsafe.Add(ref lookupTable, (nint)(byte)(crc ^ data)) ^ (crc >> 8);
 
                 return crc;
             }

@@ -19,6 +19,7 @@ Add:
       System.Collections.Generic.IReadOnlySet
       System.Net.DnsEndPoint
       System.Numerics.BitOperations
+      System.Runtime.CompilerServices.Unsafe
       System.Threading.Volatile
 
 Extensions:
@@ -50,12 +51,17 @@ Extensions:
 
   <PropertyGroup>
     <PolySharpIncludeGeneratedTypes>
+      System.Diagnostics.CodeAnalysis.AllowNullAttribute;
       System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute;
       System.Diagnostics.CodeAnalysis.NotNullAttribute;
       System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute;
       System.Diagnostics.CodeAnalysis.NotNullWhenAttribute;
       System.Runtime.CompilerServices.CallerArgumentExpressionAttribute
     </PolySharpIncludeGeneratedTypes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard1.0'))">
+    <DefineConstants>$(DefineConstants);COMP_NETSTANDARD1_0</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard2.0'))">
@@ -70,7 +76,13 @@ Extensions:
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard1.0'))
+                   and !$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard2.0'))">
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="5.0.0" />
+  </ItemGroup>
+
   <ItemGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard2.0'))">
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="6.0.0" />
   </ItemGroup>
 
