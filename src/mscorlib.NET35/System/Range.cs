@@ -87,6 +87,7 @@ namespace System
         /// It is expected Range will be used with collections which always have non negative length/count.
         /// We validate the range is inside the length scope though.
         /// </remarks>
+        [ComponentModel.EditorBrowsable(ComponentModel.EditorBrowsableState.Never)]
         [Runtime.CompilerServices.MethodImpl((Runtime.CompilerServices.MethodImplOptions)0x100)]
         public Tuple<int, int> GetOffsetAndLength(int length)
         {

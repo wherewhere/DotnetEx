@@ -10,7 +10,7 @@ namespace DotnetEx.Test
     /// The tests for the <see cref="Unsafe"/> class.
     /// </summary>
     [TestFixture]
-    public class UnsafeTests
+    public static class UnsafeTests
     {
         [Test]
         public static unsafe void ReadInt32()

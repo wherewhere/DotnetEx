@@ -19,19 +19,28 @@ Add:
       System.Collections.Generic.IReadOnlySet
       System.Net.DnsEndPoint
       System.Numerics.BitOperations
+      System.Runtime.CompilerServices.DefaultInterpolatedStringHandler
       System.Runtime.CompilerServices.Unsafe
       System.Threading.Volatile
 
 Extensions:
+      System.ArgumentExceptionEx:
+      - ThrowIfNullOrEmpty
+      - ThrowIfNullOrWhiteSpace
+
       System.ArgumentNullExceptionEx:
       - ThrowIfNull
-
-      System.EventHandlerEx:
-      - EventHandlerEx&lt;TEventArgs&gt;
-
-      System.StringEx:
-      - Join&lt;T&gt;
-      - IsNullOrWhiteSpace
+      
+      System.ArgumentOutOfRangeExceptionEx:
+      - ThrowIfZero
+      - ThrowIfNegative
+      - ThrowIfNegativeOrZero
+      - ThrowIfEqual
+      - ThrowIfNotEqual
+      - ThrowIfGreaterThan
+      - ThrowIfGreaterThanOrEqual
+      - ThrowIfLessThan
+      - ThrowIfLessThanOrEqual
 
       System.EnumEx:
       - TryParse&lt;TEnum&gt;
@@ -40,23 +49,48 @@ Extensions:
       - Is64BitProcess
       - Is64BitOperatingSystem
 
+      System.ObjectDisposedExceptionEx:
+      - ThrowIf
+
       System.OperatingSystemEx:
       - VersionString
       - IsOSPlatform
       - IsOSPlatformVersionAtLeast
+      
+      System.RandomEx:
+      - GetItems
+
+      System.StringEx:
+      - Create
+      - Concat
+      - IsNullOrWhiteSpace
+      - Join
+      - Split
+      - Trim
+      - TrimStart
+      - TrimEnd
+      - Contains
+      - IndexOf
+      - EndsWith
+      - StartsWith
 
       System.Text.StringBuilderEx:
-      - Clear</Description>
+      - Clear
+      - AppendInterpolatedStringHandler</Description>
   </PropertyGroup>
 
   <PropertyGroup>
     <PolySharpIncludeGeneratedTypes>
       System.Diagnostics.CodeAnalysis.AllowNullAttribute;
       System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute;
+      System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute;
       System.Diagnostics.CodeAnalysis.NotNullAttribute;
       System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute;
       System.Diagnostics.CodeAnalysis.NotNullWhenAttribute;
-      System.Runtime.CompilerServices.CallerArgumentExpressionAttribute
+      System.Diagnostics.StackTraceHiddenAttribute;
+      System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
+      System.Runtime.CompilerServices.InterpolatedStringHandlerArgumentAttribute;
+      System.Runtime.CompilerServices.InterpolatedStringHandlerAttribute
     </PolySharpIncludeGeneratedTypes>
   </PropertyGroup>
 

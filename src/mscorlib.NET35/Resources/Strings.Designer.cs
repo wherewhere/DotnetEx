@@ -70,6 +70,24 @@ namespace System.Resources {
         }
         
         /// <summary>
+        ///   查找类似 The value cannot be an empty string or composed entirely of whitespace. 的本地化字符串。
+        /// </summary>
+        internal static string Argument_EmptyOrWhiteSpaceString {
+            get {
+                return ResourceManager.GetString("Argument_EmptyOrWhiteSpaceString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The value cannot be an empty string. 的本地化字符串。
+        /// </summary>
+        internal static string Argument_EmptyString {
+            get {
+                return ResourceManager.GetString("Argument_EmptyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Value cannot be empty. 的本地化字符串。
         /// </summary>
         internal static string Argument_EmptyValue {
@@ -84,6 +102,87 @@ namespace System.Resources {
         internal static string ArgumentNull_Generic {
             get {
                 return ResourceManager.GetString("ArgumentNull_Generic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} (&apos;{1}&apos;) must be equal to &apos;{2}&apos;. 的本地化字符串。
+        /// </summary>
+        internal static string ArgumentOutOfRange_Generic_MustBeEqual {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_Generic_MustBeEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} (&apos;{1}&apos;) must be greater than &apos;{2}&apos;. 的本地化字符串。
+        /// </summary>
+        internal static string ArgumentOutOfRange_Generic_MustBeGreater {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_Generic_MustBeGreater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} (&apos;{1}&apos;) must be greater than or equal to &apos;{2}&apos;. 的本地化字符串。
+        /// </summary>
+        internal static string ArgumentOutOfRange_Generic_MustBeGreaterOrEqual {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_Generic_MustBeGreaterOrEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} (&apos;{1}&apos;) must be less than &apos;{2}&apos;. 的本地化字符串。
+        /// </summary>
+        internal static string ArgumentOutOfRange_Generic_MustBeLess {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_Generic_MustBeLess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} (&apos;{1}&apos;) must be less than or equal to &apos;{2}&apos;. 的本地化字符串。
+        /// </summary>
+        internal static string ArgumentOutOfRange_Generic_MustBeLessOrEqual {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_Generic_MustBeLessOrEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} (&apos;{1}&apos;) must be a non-negative value. 的本地化字符串。
+        /// </summary>
+        internal static string ArgumentOutOfRange_Generic_MustBeNonNegative {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_Generic_MustBeNonNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} (&apos;{1}&apos;) must be a non-negative and non-zero value. 的本地化字符串。
+        /// </summary>
+        internal static string ArgumentOutOfRange_Generic_MustBeNonNegativeNonZero {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_Generic_MustBeNonNegativeNonZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} (&apos;{1}&apos;) must be a non-zero value. 的本地化字符串。
+        /// </summary>
+        internal static string ArgumentOutOfRange_Generic_MustBeNonZero {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_Generic_MustBeNonZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} (&apos;{1}&apos;) must not be equal to &apos;{2}&apos;. 的本地化字符串。
+        /// </summary>
+        internal static string ArgumentOutOfRange_Generic_MustBeNotEqual {
+            get {
+                return ResourceManager.GetString("ArgumentOutOfRange_Generic_MustBeNotEqual", resourceCulture);
             }
         }
         
@@ -201,6 +300,15 @@ namespace System.Resources {
         internal static string net_sockets_invalid_optionValue_all {
             get {
                 return ResourceManager.GetString("net_sockets_invalid_optionValue_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 String length exceeded supported range. 的本地化字符串。
+        /// </summary>
+        internal static string OutOfMemory_StringTooLong {
+            get {
+                return ResourceManager.GetString("OutOfMemory_StringTooLong", resourceCulture);
             }
         }
         

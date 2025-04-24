@@ -67,23 +67,6 @@ namespace System.Text
         /// <param name="handler">The interpolated string to append.</param>
         /// <returns>A reference to this instance after the append operation has completed.</returns>
         public static StringBuilder AppendLine(this StringBuilder builder, IFormatProvider? provider, [InterpolatedStringHandlerArgument(nameof(builder), nameof(provider))] ref AppendInterpolatedStringHandler handler) => builder.AppendLine();
-
-        // Convenience method for sb.Length=0;
-        /// <summary>
-        /// Removes all characters from the current <see cref="StringBuilder"/> instance.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to removes all characters.</param>
-        /// <returns>An object whose <see cref="StringBuilder.Length"/> is 0 (zero).</returns>
-        public static StringBuilder Clear(this StringBuilder builder)
-        {
-#if NET40_OR_GREATER
-            return builder.Clear();
-#else
-            builder.Length = 0;
-            return builder;
-#endif
-        }
-
         /// <summary>
         /// Provides a handler used by the language compiler to append interpolated strings into <see cref="StringBuilder"/> instances.
         /// </summary>

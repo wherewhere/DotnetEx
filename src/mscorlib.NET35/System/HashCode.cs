@@ -46,6 +46,7 @@ https://raw.githubusercontent.com/Cyan4973/xxHash/5c174cfa4e45a42f94082dc0d4539b
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 namespace System
@@ -370,19 +371,19 @@ namespace System
         [MethodImpl((MethodImplOptions)0x100)]
         private static uint Round(uint hash, uint input)
         {
-            return RotateLeft(hash + (input * Prime2), 13) * Prime1;
+            return BitOperations.RotateLeft(hash + input * Prime2, 13) * Prime1;
         }
 
         [MethodImpl((MethodImplOptions)0x100)]
         private static uint QueueRound(uint hash, uint queuedValue)
         {
-            return RotateLeft(hash + (queuedValue * Prime3), 17) * Prime4;
+            return BitOperations.RotateLeft(hash + queuedValue * Prime3, 17) * Prime4;
         }
 
         [MethodImpl((MethodImplOptions)0x100)]
         private static uint MixState(uint v1, uint v2, uint v3, uint v4)
         {
-            return RotateLeft(v1, 1) + RotateLeft(v2, 7) + RotateLeft(v3, 12) + RotateLeft(v4, 18);
+            return BitOperations.RotateLeft(v1, 1) + BitOperations.RotateLeft(v2, 7) + BitOperations.RotateLeft(v3, 12) + BitOperations.RotateLeft(v4, 18);
         }
 
         private static uint MixEmptyState()
@@ -400,18 +401,6 @@ namespace System
             hash ^= hash >> 16;
             return hash;
         }
-
-        /// <summary>
-        /// Rotates the specified value left by the specified number of bits.
-        /// Similar in behavior to the x86 instruction ROL.
-        /// </summary>
-        /// <param name="value">The value to rotate.</param>
-        /// <param name="offset">The number of bits to rotate by.
-        /// Any value outside the range [0..31] is treated as congruent mod 32.</param>
-        /// <returns>The rotated value.</returns>
-        [MethodImpl((MethodImplOptions)0x100)]
-        private static uint RotateLeft(uint value, int offset)
-            => (value << offset) | (value >> (32 - offset));
 
         /// <summary>
         /// Adds a single value to the hash code.

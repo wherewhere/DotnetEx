@@ -1,6 +1,7 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
@@ -89,6 +90,7 @@ namespace System
         /// It is expected Range will be used with collections which always have non negative length/count.
         /// We validate the range is inside the length scope though.
         /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [MethodImpl((MethodImplOptions)0x100)]
         public Tuple<int, int> GetOffsetAndLength(int length)
         {

@@ -8,21 +8,70 @@
     <Description>Contains polyfills from the mscorlib for .NET Framework 4.0.
 
 Add:
+      System.Index
+      System.HashCode
+      System.Range
+      System.Collections.Generic.IReadOnlySet
+      System.Numerics.BitOperations
+      System.Runtime.CompilerServices.DefaultInterpolatedStringHandler
+      System.Runtime.CompilerServices.Unsafe
       System.Threading.Volatile
 
 Extensions:
-      System.OperatingSystemEx</Description>
+      System.ArgumentExceptionEx:
+      - ThrowIfNullOrEmpty
+      - ThrowIfNullOrWhiteSpace
+
+      System.ArgumentNullExceptionEx:
+      - ThrowIfNull
+      
+      System.ArgumentOutOfRangeExceptionEx:
+      - ThrowIfZero
+      - ThrowIfNegative
+      - ThrowIfNegativeOrZero
+      - ThrowIfEqual
+      - ThrowIfNotEqual
+      - ThrowIfGreaterThan
+      - ThrowIfGreaterThanOrEqual
+      - ThrowIfLessThan
+      - ThrowIfLessThanOrEqual
+
+      System.ObjectDisposedExceptionEx:
+      - ThrowIf
+      
+      System.OperatingSystemEx:
+      - VersionString
+      - IsOSPlatform
+      - IsOSPlatformVersionAtLeast
+      
+      System.StringEx:
+      - Create
+      - Join
+      - Split
+      - Trim
+      - TrimStart
+      - TrimEnd
+      - Contains
+      - IndexOf
+      - EndsWith
+      - StartsWith
+
+      System.Text.StringBuilderEx:
+      - AppendInterpolatedStringHandler</Description>
   </PropertyGroup>
 
   <PropertyGroup>
     <PolySharpIncludeGeneratedTypes>
       System.Diagnostics.CodeAnalysis.AllowNullAttribute;
       System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute;
+      System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute;
       System.Diagnostics.CodeAnalysis.NotNullAttribute;
       System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute;
       System.Diagnostics.CodeAnalysis.NotNullWhenAttribute;
-      System.Runtime.CompilerServices.IsExternalInit;
-      System.Runtime.CompilerServices.CallerArgumentExpressionAttribute
+      System.Diagnostics.StackTraceHiddenAttribute;
+      System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
+      System.Runtime.CompilerServices.InterpolatedStringHandlerArgumentAttribute;
+      System.Runtime.CompilerServices.InterpolatedStringHandlerAttribute
     </PolySharpIncludeGeneratedTypes>
   </PropertyGroup>
 
