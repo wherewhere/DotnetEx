@@ -396,7 +396,6 @@ namespace System
 #if NET40_OR_GREATER
                 return string.Join(separator, values);
 #else
-
                 ArgumentNullException.ThrowIfNull(values);
 
                 if (typeof(T) == typeof(string))

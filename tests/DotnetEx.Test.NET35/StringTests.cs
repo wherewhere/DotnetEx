@@ -109,7 +109,7 @@ namespace DotnetEx.Test
             }
 
             Validate(string.Concat(values));
-            Validate(StringEx.Concat((IEnumerable<string>)values));
+            Validate(string.Concat(values: (IEnumerable<string>)values));
             Validate(string.Concat<string>(values)); // Call the generic IEnumerable<T>-based overload
         }
 

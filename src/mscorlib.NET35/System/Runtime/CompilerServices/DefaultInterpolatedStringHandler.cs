@@ -11,7 +11,7 @@ namespace System.Runtime.CompilerServices
     /// Provides a handler used by the language compiler to process interpolated strings into <see cref="string"/> instances.
     /// </summary>
     [InterpolatedStringHandler]
-    public readonly struct DefaultInterpolatedStringHandler
+    public readonly ref struct DefaultInterpolatedStringHandler
     {
         /// <summary>
         /// Expected average length of formatted data used for an individual interpolation expression result.
