@@ -1,38 +1,29 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Resources;
 
-namespace System
+internal static class Utilities
 {
-    internal static class Utilities
+    internal static string ReadProcessOutput(string fileName, string args = "")
     {
-        internal static string ReadProcessOutput(string fileName)
+        if (string.IsNullOrWhiteSpace(fileName))
         {
-            return ReadProcessOutput(fileName, string.Empty);
+            throw new ArgumentException(Strings.Argument_EmptyValue, nameof(fileName));
         }
 
-        internal static string ReadProcessOutput(string fileName, string args)
+        ProcessStartInfo processInfo = new()
         {
-            if (string.IsNullOrWhiteSpace(fileName))
-            {
-                throw new ArgumentException(Strings.Argument_EmptyValue, nameof(fileName));
-            }
+            FileName = fileName,
+            Arguments = args ?? string.Empty,
+            UseShellExecute = false,
+            RedirectStandardOutput = true
+        };
 
-            string output;
-            ProcessStartInfo processInfo = new()
-            {
-                FileName = fileName,
-                Arguments = args ?? string.Empty,
-                UseShellExecute = false,
-                RedirectStandardOutput = true
-            };
+        using Process process = Process.Start(processInfo);
 
-            using (Process process = Process.Start(processInfo))
-            {
-                output = process.StandardOutput.ReadToEnd();
-                process.WaitForExit();
-            }
+        string output = process.StandardOutput.ReadToEnd();
+        process.WaitForExit();
 
-            return output;
-        }
+        return output;
     }
 }

@@ -13,16 +13,14 @@
             /// <param name="value">The string to seek.</param>
             /// <param name="comparisonType">One of the enumeration values that specifies the rules to use in the comparison.</param>
             /// <returns><see langword="true"/> if the <paramref name="value"/> parameter occurs within this string, or if <paramref name="value"/> is the empty string (""); otherwise, <see langword="false"/>.</returns>
-            public bool Contains(string value, StringComparison comparisonType) =>
-                text.IndexOf(value, comparisonType) >= 0;
+            public bool Contains(string value, StringComparison comparisonType) => text.IndexOf(value, comparisonType) >= 0;
 
             /// <summary>
             /// Returns a value indicating whether a specified character occurs within this string.
             /// </summary>
             /// <param name="value">The character to seek.</param>
             /// <returns><see langword="true"/> if the <paramref name="value"/> parameter occurs within this string; otherwise, <see langword="false"/>.</returns>
-            public bool Contains(char value) =>
-                text.IndexOf(value) >= 0;
+            public bool Contains(char value) => text.IndexOf(value) >= 0;
 
             /// <summary>
             /// Returns a value indicating whether a specified character occurs within this string, using the specified comparison rules.
@@ -30,8 +28,7 @@
             /// <param name="value">The character to seek.</param>
             /// <param name="comparisonType">One of the enumeration values that specifies the rules to use in the comparison.</param>
             /// <returns><see langword="true"/> if the <paramref name="value"/> parameter occurs within this string; otherwise, <see langword="false"/>.</returns>
-            public bool Contains(char value, StringComparison comparisonType) =>
-                text.IndexOf(value, comparisonType) >= 0;
+            public bool Contains(char value, StringComparison comparisonType) => text.IndexOf(value, comparisonType) >= 0;
 
             /// <summary>
             /// Reports the zero-based index of the first occurrence of the specified Unicode character in this string. A parameter specifies the type of search to use for the specified character.
