@@ -54,9 +54,9 @@ namespace DotnetEx.Test
         {
             DefaultInterpolatedStringHandler handler = new(0, 0);
             handler.AppendLiteral("hi");
-            Assert.AreEqual("hi", handler.Text.ToString());
+            Assert.AreEqual("hi", handler.ToString());
             handler.Clear();
-            Assert.AreEqual(string.Empty, handler.Text.ToString());
+            Assert.AreEqual(string.Empty, handler.ToString());
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace DotnetEx.Test
                 actual.AppendLiteral(s);
             }
 
-            Assert.AreEqual(expected.ToString(), actual.Text.ToString());
+            Assert.AreEqual(expected.ToString(), actual.ToString());
             Assert.AreEqual(expected.ToString(), actual.ToStringAndClear());
         }
 
@@ -103,7 +103,7 @@ namespace DotnetEx.Test
                 }
             }
 
-            Assert.AreEqual(expected.ToString(), actual.Text.ToString());
+            Assert.AreEqual(expected.ToString(), actual.ToString());
             Assert.AreEqual(expected.ToString(), actual.ToStringAndClear());
         }
 
@@ -134,7 +134,7 @@ namespace DotnetEx.Test
                 actual.AppendFormatted(s, -3, "X2");
             }
 
-            Assert.AreEqual(expected.ToString(), actual.Text.ToString());
+            Assert.AreEqual(expected.ToString(), actual.ToString());
             Assert.AreEqual(expected.ToString(), actual.ToStringAndClear());
         }
 
@@ -194,7 +194,7 @@ namespace DotnetEx.Test
                 }
             }
 
-            Assert.AreEqual(expected.ToString(), actual.Text.ToString());
+            Assert.AreEqual(expected.ToString(), actual.ToString());
             Assert.AreEqual(expected.ToString(), actual.ToStringAndClear());
         }
 
@@ -266,7 +266,7 @@ namespace DotnetEx.Test
                 }
             }
 
-            Assert.AreEqual(expected.ToString(), actual.Text.ToString());
+            Assert.AreEqual(expected.ToString(), actual.ToString());
             Assert.AreEqual(expected.ToString(), actual.ToStringAndClear());
         }
 
@@ -305,7 +305,7 @@ namespace DotnetEx.Test
                     AssertModeMatchesType(((IHasToStringState)t));
                 }
 
-                Assert.AreEqual(expected.ToString(), actual.Text.ToString());
+                Assert.AreEqual(expected.ToString(), actual.ToString());
                 Assert.AreEqual(expected.ToString(), actual.ToStringAndClear());
             }
 
@@ -380,7 +380,7 @@ namespace DotnetEx.Test
                 actual.AppendFormatted(t, -3, "X2");
                 AssertTss(t, "X2");
 
-                Assert.AreEqual(expected.ToString(), actual.Text.ToString());
+                Assert.AreEqual(expected.ToString(), actual.ToString());
                 Assert.AreEqual(expected.ToString(), actual.ToStringAndClear());
             }
 
@@ -406,7 +406,7 @@ namespace DotnetEx.Test
                 expected.AppendFormat("{0,3}", i);
             }
 
-            Assert.AreEqual(expected.ToString(), handler.Text.ToString());
+            Assert.AreEqual(expected.ToString(), handler.ToString());
             Assert.AreEqual(expected.ToString(), handler.ToStringAndClear());
         }
 

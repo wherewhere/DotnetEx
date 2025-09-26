@@ -67,6 +67,7 @@ namespace System.Text
         /// <param name="handler">The interpolated string to append.</param>
         /// <returns>A reference to this instance after the append operation has completed.</returns>
         public static StringBuilder AppendLine(this StringBuilder builder, IFormatProvider? provider, [InterpolatedStringHandlerArgument(nameof(builder), nameof(provider))] ref AppendInterpolatedStringHandler handler) => builder.AppendLine();
+
         /// <summary>
         /// Provides a handler used by the language compiler to append interpolated strings into <see cref="StringBuilder"/> instances.
         /// </summary>
@@ -154,14 +155,16 @@ namespace System.Text
                 {
                     // If there's a custom formatter, always use it.
                     AppendCustomFormatter(value, format: null);
+                    return;
                 }
-                else if (value is IFormattable formattable)
+                switch (value)
                 {
-                    _stringBuilder.Append(formattable.ToString(format: null, _provider)); // constrained call avoiding boxing for value types
-                }
-                else if (value is not null)
-                {
-                    _stringBuilder.Append(value.ToString());
+                    case IFormattable:
+                        _ = _stringBuilder.Append(((IFormattable)value).ToString(format: null, _provider)); // constrained call avoiding boxing for value types
+                        break;
+                    case not null:
+                        _ = _stringBuilder.Append(value.ToString());
+                        break;
                 }
             }
 
@@ -177,14 +180,16 @@ namespace System.Text
                 {
                     // If there's a custom formatter, always use it.
                     AppendCustomFormatter(value, format);
+                    return;
                 }
-                else if (value is IFormattable formattable)
+                switch (value)
                 {
-                    _stringBuilder.Append(formattable.ToString(format, _provider)); // constrained call avoiding boxing for value types
-                }
-                else if (value is not null)
-                {
-                    _stringBuilder.Append(value.ToString());
+                    case IFormattable:
+                        _ = _stringBuilder.Append(((IFormattable)value).ToString(format, _provider)); // constrained call avoiding boxing for value types
+                        break;
+                    case not null:
+                        _ = _stringBuilder.Append(value.ToString());
+                        break;
                 }
             }
 
@@ -225,7 +230,7 @@ namespace System.Text
             {
                 if (!_hasCustomFormatter)
                 {
-                    _stringBuilder.Append(value);
+                    _ = _stringBuilder.Append(value);
                 }
                 else
                 {
@@ -259,6 +264,41 @@ namespace System.Text
                 // exists purely to help make cases from (b) compile. Just delegate to the T-based implementation.
                 AppendFormatted<object?>(value, alignment, format);
             #endregion
+
+            #region AppendFormatted char
+            /// <summary>
+            /// Writes the specified value to the handler.
+            /// </summary>
+            /// <param name="value">The value to write.</param>
+            public void AppendFormatted(char value)
+            {
+                // If there's a custom formatter, always use it.
+                if (_hasCustomFormatter)
+                {
+                    AppendCustomFormatter(value, format: null);
+                    return;
+                }
+
+                _ = _provider == null
+                    ? _stringBuilder.Append(value)
+                    : _stringBuilder.Append(value.ToString(_provider));
+            }
+
+            /// <summary>
+            /// Writes the specified value to the handler.
+            /// </summary>
+            /// <param name="value">The value to write.</param>
+            /// <param name="alignment">Minimum number of characters that should be written for this value.  If the value is negative, it indicates left-aligned and the required minimum is the absolute value.</param>
+            public void AppendFormatted(char value, int alignment)
+            {
+                int startingPos = _stringBuilder.Length;
+                AppendFormatted(value);
+                if (alignment != 0)
+                {
+                    AppendOrInsertAlignmentIfNeeded(startingPos, alignment);
+                }
+            }
+            #endregion
             #endregion
 
             /// <summary>
@@ -273,7 +313,7 @@ namespace System.Text
                 ICustomFormatter? formatter = (ICustomFormatter?)_provider?.GetFormat(typeof(ICustomFormatter));
                 if (formatter is not null)
                 {
-                    _stringBuilder.Append(formatter.Format(format, value, _provider));
+                    _ = _stringBuilder.Append(formatter.Format(format, value, _provider));
                 }
             }
 

@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/NET35/">
+    <Project Path="src/mscorlib.NET35/mscorlib.Polyfill.NET35.csproj" />
+    <Project Path="src/System.Buffers.NET35/Polyfill.System.Buffers.NET35.csproj" />
+    <Project Path="src/System.Runtime.InteropServices.RuntimeInformation.NET35/Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET35.csproj" />
+  </Folder>
+  <Folder Name="/NET40/">
+    <Project Path="src/mscorlib.NET40/mscorlib.Polyfill.NET40.csproj" />
+    <Project Path="src/System.Buffers.NET40/Polyfill.System.Buffers.NET40.csproj" />
+    <Project Path="src/System.Runtime.InteropServices.RuntimeInformation.NET40/Polyfill.System.Runtime.InteropServices.RuntimeInformation.NET40.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="tests/DotnetEx.Test.NET35/DotnetEx.Test.NET35.csproj" />
+    <Project Path="tests/DotnetEx.Test.NET40/DotnetEx.Test.NET40.csproj" />
+  </Folder>
+</Solution>
