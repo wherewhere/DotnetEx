@@ -8,16 +8,18 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <IncludeSymbols>True</IncludeSymbols>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>latest</LangVersion>
     <PackageIcon>Icon.png</PackageIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/wherewhere/DotnetEx/main/nuget.png</PackageIconUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/wherewhere/DotnetEx</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>https://github.com/wherewhere/DotnetEx/releases</PackageReleaseNotes>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/wherewhere/DotnetEx</RepositoryUrl>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <UseArtifactsOutput>true</UseArtifactsOutput>
     <VersionPrefix>0.1.5</VersionPrefix>
   </PropertyGroup>
 
