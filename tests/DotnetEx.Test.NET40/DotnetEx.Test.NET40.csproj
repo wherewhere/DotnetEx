@@ -5,7 +5,7 @@
     <IsPackable>false</IsPackable>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <RootNamespace>DotnetEx.Test</RootNamespace>
-    <TargetFrameworks>net4.0-client</TargetFrameworks>
+    <TargetFramework>net4.0-client</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>

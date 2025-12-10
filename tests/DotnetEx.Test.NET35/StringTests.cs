@@ -361,7 +361,7 @@ namespace DotnetEx.Test
                     Assert.AreEqual(expected, string.Join(separator, arrayOfObjects));
                 }
             }
-            Assert.AreEqual(expected, StringEx.Join(separator, values, startIndex, count));
+            Assert.AreEqual(expected, string.Join(separator, values, startIndex, count));
         }
 
         [Test]
