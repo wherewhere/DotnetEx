@@ -447,7 +447,7 @@ namespace DotnetEx.Test
         private static unsafe class StaticReadonlyHolder
         {
             public static readonly void* Pointer;
-            unsafe static StaticReadonlyHolder()
+            static unsafe StaticReadonlyHolder()
             {
                 byte* ptr = stackalloc byte[1];
                 Pointer = ptr;

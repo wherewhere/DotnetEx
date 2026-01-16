@@ -17,7 +17,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="value">The managed pointer to convert.</param>
         /// <returns>An unmanaged pointer corresponding to the original source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void* AsPointer<T>(ref readonly T value) where T : unmanaged
+        public static unsafe void* AsPointer<T>(ref readonly T value) where T : unmanaged
         {
             fixed (T* ptr = &value)
             {
@@ -31,7 +31,7 @@ namespace System.Runtime.CompilerServices
         /// <typeparam name="T">The type whose size is to be retrieved.</typeparam>
         /// <returns>The size, in bytes, of a value of type <typeparamref name="T"/>.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static int SizeOf<T>() where T : unmanaged
+        public static unsafe int SizeOf<T>() where T : unmanaged
         {
             return sizeof(T);
         }
@@ -57,7 +57,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="source">The managed pointer to reinterpret.</param>
         /// <returns>A managed pointer to a value of type <typeparamref name="TTo"/>.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref TTo As<TFrom, TTo>(ref TFrom source)
+        public static unsafe ref TTo As<TFrom, TTo>(ref TFrom source)
             where TFrom : unmanaged
             where TTo : unmanaged
         {
@@ -75,7 +75,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="elementOffset">The offset to add.</param>
         /// <returns>A new unmanaged pointer that reflects the addition of the specified offset to the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void* Add<T>(void* source, int elementOffset) where T : unmanaged
+        public static unsafe void* Add<T>(void* source, int elementOffset) where T : unmanaged
         {
             return (T*)source + elementOffset;
         }
@@ -88,7 +88,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="elementOffset">The offset to add.</param>
         /// <returns>A new managed pointer that reflects the addition of the specified offset to the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T Add<T>(ref T source, int elementOffset) where T : unmanaged
+        public static unsafe ref T Add<T>(ref T source, int elementOffset) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {
@@ -104,7 +104,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="elementOffset">The offset to add.</param>
         /// <returns>A new managed pointer that reflects the addition of the specified offset to the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T Add<T>(ref T source, nint elementOffset) where T : unmanaged
+        public static unsafe ref T Add<T>(ref T source, nint elementOffset) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {
@@ -120,7 +120,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="elementOffset">The offset to add.</param>
         /// <returns>A new managed pointer that reflects the addition of the specified offset to the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T Add<T>(ref T source, nuint elementOffset) where T : unmanaged
+        public static unsafe ref T Add<T>(ref T source, nuint elementOffset) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {
@@ -136,7 +136,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="byteOffset">The offset to add.</param>
         /// <returns>A new managed pointer that reflects the addition of the specified byte offset to the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T AddByteOffset<T>(ref T source, nuint byteOffset) where T : unmanaged
+        public static unsafe ref T AddByteOffset<T>(ref T source, nuint byteOffset) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {
@@ -152,7 +152,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="right">The second managed pointer to compare.</param>
         /// <returns><see langword="true"/> if <paramref name="left"/> and <paramref name="right"/> point to the same location; otherwise, <see langword="false"/>.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static bool AreSame<T>([AllowNull] ref readonly T left, [AllowNull] ref readonly T right) where T : unmanaged
+        public static unsafe bool AreSame<T>([AllowNull] ref readonly T left, [AllowNull] ref readonly T right) where T : unmanaged
         {
             fixed (T* leftPtr = &left)
             fixed (T* rightPtr = &right)
@@ -168,7 +168,7 @@ namespace System.Runtime.CompilerServices
         /// <exception cref="NotSupportedException">The sizes of <typeparamref name="TFrom" /> and <typeparamref name="TTo" /> are not the same
         /// or the type parameters are not <see langword="struct"/>s.</exception>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static TTo BitCast<TFrom, TTo>(TFrom source)
+        public static unsafe TTo BitCast<TFrom, TTo>(TFrom source)
             where TFrom : unmanaged
             where TTo : unmanaged
         {
@@ -186,7 +186,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="destination">The location to copy to.</param>
         /// <param name="source">A reference to the value to copy.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void Copy<T>(void* destination, ref T source) where T : unmanaged
+        public static unsafe void Copy<T>(void* destination, ref T source) where T : unmanaged
         {
             *(T*)destination = source;
         }
@@ -198,7 +198,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="destination">The location to copy to.</param>
         /// <param name="source">A pointer to the value to copy.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void Copy<T>(ref T destination, void* source) where T : unmanaged
+        public static unsafe void Copy<T>(ref T destination, void* source) where T : unmanaged
         {
             destination = *(T*)source;
         }
@@ -210,7 +210,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="source">The unmanaged pointer corresponding to the source address to copy from.</param>
         /// <param name="byteCount">The number of bytes to copy.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void CopyBlock(void* destination, void* source, uint byteCount)
+        public static unsafe void CopyBlock(void* destination, void* source, uint byteCount)
         {
             byte* dest = (byte*)destination;
             byte* src = (byte*)source;
@@ -227,7 +227,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="source">The managed pointer corresponding to the source address to copy from.</param>
         /// <param name="byteCount">The number of bytes to copy.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void CopyBlock(ref byte destination, ref readonly byte source, uint byteCount)
+        public static unsafe void CopyBlock(ref byte destination, ref readonly byte source, uint byteCount)
         {
             fixed (byte* dest = &destination)
             fixed (byte* src = &source)
@@ -246,7 +246,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="source">The unmanaged pointer corresponding to the source address to copy from.</param>
         /// <param name="byteCount">The number of bytes to copy.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void CopyBlockUnaligned(void* destination, void* source, uint byteCount)
+        public static unsafe void CopyBlockUnaligned(void* destination, void* source, uint byteCount)
         {
             byte* dest = (byte*)destination;
             byte* src = (byte*)source;
@@ -263,7 +263,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="source">The managed pointer corresponding to the source address to copy from.</param>
         /// <param name="byteCount">The number of bytes to copy.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void CopyBlockUnaligned(ref byte destination, ref readonly byte source, uint byteCount)
+        public static unsafe void CopyBlockUnaligned(ref byte destination, ref readonly byte source, uint byteCount)
         {
             fixed (byte* dest = &destination)
             fixed (byte* src = &source)
@@ -284,7 +284,7 @@ namespace System.Runtime.CompilerServices
         /// <returns><see langword="true"/> if <paramref name="left"/> is greater than <paramref name="right"/>; otherwise, <see langword="false"/>.</returns>
         /// <remarks>This check is conceptually similar to "(void*)(&amp;left) &gt; (void*)(&amp;right)".</remarks>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static bool IsAddressGreaterThan<T>([AllowNull] ref readonly T left, [AllowNull] ref readonly T right) where T : unmanaged
+        public static unsafe bool IsAddressGreaterThan<T>([AllowNull] ref readonly T left, [AllowNull] ref readonly T right) where T : unmanaged
         {
             fixed (T* leftPtr = &left)
             fixed (T* rightPtr = &right)
@@ -302,7 +302,7 @@ namespace System.Runtime.CompilerServices
         /// <returns><see langword="true"/> if <paramref name="left"/> is less than <paramref name="right"/>; otherwise, <see langword="false"/>.</returns>
         /// <remarks>This check is conceptually similar to "(void*)(&amp;left) &lt; (void*)(&amp;right)".</remarks>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static bool IsAddressLessThan<T>([AllowNull] ref readonly T left, [AllowNull] ref readonly T right) where T : unmanaged
+        public static unsafe bool IsAddressLessThan<T>([AllowNull] ref readonly T left, [AllowNull] ref readonly T right) where T : unmanaged
         {
             fixed (T* leftPtr = &left)
             fixed (T* rightPtr = &right)
@@ -318,7 +318,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="value">The value to initialize all bytes of the memory block to.</param>
         /// <param name="byteCount">The number of bytes to initialize.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void InitBlock(void* startAddress, byte value, uint byteCount)
+        public static unsafe void InitBlock(void* startAddress, byte value, uint byteCount)
         {
             byte* ptr = (byte*)startAddress;
             for (uint i = 0; i < byteCount; i++)
@@ -334,7 +334,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="value">The value to initialize all bytes of the memory block to.</param>
         /// <param name="byteCount">The number of bytes to initialize.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void InitBlock(ref byte startAddress, byte value, uint byteCount)
+        public static unsafe void InitBlock(ref byte startAddress, byte value, uint byteCount)
         {
             fixed (byte* ptr = &startAddress)
             {
@@ -352,7 +352,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="value">The value to initialize all bytes of the memory block to.</param>
         /// <param name="byteCount">The number of bytes to initialize.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void InitBlockUnaligned(void* startAddress, byte value, uint byteCount)
+        public static unsafe void InitBlockUnaligned(void* startAddress, byte value, uint byteCount)
         {
             byte* ptr = (byte*)startAddress;
             for (uint i = 0; i < byteCount; i++)
@@ -368,7 +368,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="value">The value to initialize all bytes of the memory block to.</param>
         /// <param name="byteCount">The number of bytes to initialize.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void InitBlockUnaligned(ref byte startAddress, byte value, uint byteCount)
+        public static unsafe void InitBlockUnaligned(ref byte startAddress, byte value, uint byteCount)
         {
             fixed (byte* ptr = &startAddress)
             {
@@ -386,7 +386,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="source">An unmanaged pointer containing the address to read from.</param>
         /// <returns>A value of type <typeparamref name="T"/> read from the given location.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static T ReadUnaligned<T>(void* source) where T : unmanaged
+        public static unsafe T ReadUnaligned<T>(void* source) where T : unmanaged
         {
             return *(T*)source;
         }
@@ -398,7 +398,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="source">A managed pointer containing the address to read from.</param>
         /// <returns>A value of type <typeparamref name="T"/> read from the given location.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static T ReadUnaligned<T>(scoped ref readonly byte source) where T : unmanaged
+        public static unsafe T ReadUnaligned<T>(scoped ref readonly byte source) where T : unmanaged
         {
             fixed (byte* ptr = &source)
             {
@@ -413,7 +413,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="destination">A managed pointer containing the address to write to.</param>
         /// <param name="value">The value to write.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void WriteUnaligned<T>(void* destination, T value) where T : unmanaged
+        public static unsafe void WriteUnaligned<T>(void* destination, T value) where T : unmanaged
         {
             *(T*)destination = value;
         }
@@ -425,7 +425,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="destination">A managed pointer containing the address to write to.</param>
         /// <param name="value">The value to write.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void WriteUnaligned<T>(ref byte destination, T value) where T : unmanaged
+        public static unsafe void WriteUnaligned<T>(ref byte destination, T value) where T : unmanaged
         {
             fixed (byte* ptr = &destination)
             {
@@ -441,7 +441,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="byteOffset">The offset to add.</param>
         /// <returns>A new managed pointer that reflects the addition of the specified byte offset to the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T AddByteOffset<T>(ref T source, nint byteOffset) where T : unmanaged
+        public static unsafe ref T AddByteOffset<T>(ref T source, nint byteOffset) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {
@@ -456,7 +456,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="source">An unmanaged pointer containing the address to read from.</param>
         /// <returns>A value of type <typeparamref name="T"/> read from the given location.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static T Read<T>(void* source) where T : unmanaged
+        public static unsafe T Read<T>(void* source) where T : unmanaged
         {
             return *(T*)source;
         }
@@ -468,7 +468,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="destination">The location to write to.</param>
         /// <param name="value">The value to write.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void Write<T>(void* destination, T value) where T : unmanaged
+        public static unsafe void Write<T>(void* destination, T value) where T : unmanaged
         {
             *(T*)destination = value;
         }
@@ -480,7 +480,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="source">The unmanaged pointer to convert.</param>
         /// <returns>A managed pointer to a value of type <typeparamref name="T"/>.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T AsRef<T>(void* source) where T : unmanaged
+        public static unsafe ref T AsRef<T>(void* source) where T : unmanaged
         {
             return ref *(T*)source;
         }
@@ -493,7 +493,7 @@ namespace System.Runtime.CompilerServices
         /// <returns>A mutable reference to a value of type <typeparamref name="T"/>.</returns>
         /// <remarks>The lifetime of the reference will not be validated when using this API.</remarks>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T AsRef<T>(scoped ref readonly T source) where T : unmanaged
+        public static unsafe ref T AsRef<T>(scoped ref readonly T source) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {
@@ -509,7 +509,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="target">The managed pointer to the target.</param>
         /// <returns>The byte offset from origin to target, that is, <paramref name="target"/> - <paramref name="origin"/>.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static nint ByteOffset<T>([AllowNull] ref readonly T origin, [AllowNull] ref readonly T target) where T : unmanaged
+        public static unsafe nint ByteOffset<T>([AllowNull] ref readonly T origin, [AllowNull] ref readonly T target) where T : unmanaged
         {
             fixed (T* originPtr = &origin)
             fixed (T* targetPtr = &target)
@@ -524,7 +524,7 @@ namespace System.Runtime.CompilerServices
         /// <typeparam name="T">The elemental type of the managed pointer.</typeparam>
         /// <returns>A null managed pointer to a value of type <typeparamref name="T"/>.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T NullRef<T>() where T : unmanaged
+        public static unsafe ref T NullRef<T>() where T : unmanaged
         {
             return ref *(T*)0;
         }
@@ -537,7 +537,7 @@ namespace System.Runtime.CompilerServices
         /// <returns><see langword="true"/> if <paramref name="source"/> is a null reference; otherwise, <see langword="false"/>.</returns>
         /// <remarks>This check is conceptually similar to "(void*)(&amp;source) == nullptr".</remarks>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static bool IsNullRef<T>(ref readonly T source) where T : unmanaged
+        public static unsafe bool IsNullRef<T>(ref readonly T source) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {
@@ -551,7 +551,7 @@ namespace System.Runtime.CompilerServices
         /// <typeparam name="T">The type of the reference.</typeparam>
         /// <param name="value">The reference whose initialization should be skipped.</param>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void SkipInit<T>(out T value) where T : unmanaged
+        public static unsafe void SkipInit<T>(out T value) where T : unmanaged
         {
             fixed (T* ptr = &value) { }
         }
@@ -564,7 +564,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="elementOffset">The offset to subtract.</param>
         /// <returns>A new managed pointer that reflects the subtraction of the specified offset from the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T Subtract<T>(ref T source, int elementOffset) where T : unmanaged
+        public static unsafe ref T Subtract<T>(ref T source, int elementOffset) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {
@@ -580,7 +580,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="elementOffset">The offset to subtract.</param>
         /// <returns>A new unmanaged pointer that reflects the subtraction of the specified offset from the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static void* Subtract<T>(void* source, int elementOffset) where T : unmanaged
+        public static unsafe void* Subtract<T>(void* source, int elementOffset) where T : unmanaged
         {
             return (T*)source - elementOffset;
         }
@@ -593,7 +593,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="elementOffset">The offset to subtract.</param>
         /// <returns>A new managed pointer that reflects the subtraction of the specified offset from the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T Subtract<T>(ref T source, nint elementOffset) where T : unmanaged
+        public static unsafe ref T Subtract<T>(ref T source, nint elementOffset) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {
@@ -609,7 +609,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="elementOffset">The offset to subtract.</param>
         /// <returns>A new managed pointer that reflects the subtraction of the specified offset from the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T Subtract<T>(ref T source, nuint elementOffset) where T : unmanaged
+        public static unsafe ref T Subtract<T>(ref T source, nuint elementOffset) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {
@@ -625,7 +625,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="byteOffset">The offset to subtract.</param>
         /// <returns>A new managed pointer that reflects the subtraction of the specified byte offset from the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T SubtractByteOffset<T>(ref T source, nint byteOffset) where T : unmanaged
+        public static unsafe ref T SubtractByteOffset<T>(ref T source, nint byteOffset) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {
@@ -641,7 +641,7 @@ namespace System.Runtime.CompilerServices
         /// <param name="byteOffset">The offset to subtract.</param>
         /// <returns>A new managed pointer that reflects the subtraction of the specified byte offset from the source pointer.</returns>
         [MethodImpl((MethodImplOptions)0x100)]
-        public unsafe static ref T SubtractByteOffset<T>(ref T source, nuint byteOffset) where T : unmanaged
+        public static unsafe ref T SubtractByteOffset<T>(ref T source, nuint byteOffset) where T : unmanaged
         {
             fixed (T* ptr = &source)
             {

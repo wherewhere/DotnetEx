@@ -1,9 +1,8 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+﻿#if COMP_NETSTANDARD2_0
+[assembly: System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Range))]
+#else
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
-
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
 
 namespace System
 {
@@ -81,6 +80,7 @@ namespace System
         /// </summary>
         public static Range All => new(Index.Start, Index.End);
 
+#if NET40_OR_GREATER
         /// <summary>
         /// Calculate the start offset and length of range object using a collection length.
         /// </summary>
@@ -90,8 +90,8 @@ namespace System
         /// It is expected Range will be used with collections which always have non negative length/count.
         /// We validate the range is inside the length scope though.
         /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [MethodImpl((MethodImplOptions)0x100)]
+        [ComponentModel.EditorBrowsable(ComponentModel.EditorBrowsableState.Never)]
+        [Runtime.CompilerServices.MethodImpl((Runtime.CompilerServices.MethodImplOptions)0x100)]
         public Tuple<int, int> GetOffsetAndLength(int length)
         {
             int start = Start.GetOffset(length);
@@ -101,5 +101,7 @@ namespace System
                 ? throw new ArgumentOutOfRangeException(nameof(length))
                 : new Tuple<int, int>(start, end - start);
         }
+#endif
     }
 }
+#endif
