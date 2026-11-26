@@ -13,6 +13,26 @@ namespace System
         extension(Enum)
         {
             /// <summary>
+            /// Retrieves an array of the values of the constants in a specified enumeration type.
+            /// </summary>
+            /// <typeparam name="TEnum">The type of the enumeration.</typeparam>
+            /// <returns>An array that contains the values of the constants in <typeparamref name="TEnum"/>.</returns>
+            public static TEnum[] GetValues<TEnum>() where TEnum : struct, Enum
+            {
+                Array values = Enum.GetValues(typeof(TEnum));
+                if (values is TEnum[] array)
+                {
+                    return array;
+                }
+                else
+                {
+                    TEnum[] result = new TEnum[values.Length];
+                    Array.Copy(values, result, values.Length);
+                    return result;
+                }
+            }
+
+            /// <summary>
             /// Converts the string representation of the name or numeric value of one or more enumerated constants specified by <typeparamref name="TEnum"/> to an equivalent enumerated object.
             /// </summary>
             /// <typeparam name="TEnum">An enumeration type.</typeparam>

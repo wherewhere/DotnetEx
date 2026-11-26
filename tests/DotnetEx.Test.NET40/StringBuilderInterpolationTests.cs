@@ -285,13 +285,13 @@ namespace DotnetEx.Test
                 expected.AppendFormat("{0}", t);
                 iab.AppendFormatted(t);
                 Assert.True(string.IsNullOrEmpty(((IHasToStringState)t).ToStringState.LastFormat));
-                AssertModeMatchesType(((IHasToStringState)t));
+                AssertModeMatchesType((IHasToStringState)t);
 
                 // struct, format
                 expected.AppendFormat("{0:X2}", t);
                 iab.AppendFormatted(t, "X2");
                 Assert.AreEqual("X2", ((IHasToStringState)t).ToStringState.LastFormat);
-                AssertModeMatchesType(((IHasToStringState)t));
+                AssertModeMatchesType((IHasToStringState)t);
 
                 foreach (int alignment in new[] { 0, 3, -3 })
                 {
@@ -299,13 +299,13 @@ namespace DotnetEx.Test
                     expected.AppendFormat("{0," + alignment.ToString(CultureInfo.InvariantCulture) + "}", t);
                     iab.AppendFormatted(t, alignment);
                     Assert.True(string.IsNullOrEmpty(((IHasToStringState)t).ToStringState.LastFormat));
-                    AssertModeMatchesType(((IHasToStringState)t));
+                    AssertModeMatchesType((IHasToStringState)t);
 
                     // struct, alignment, format
                     expected.AppendFormat("{0," + alignment.ToString(CultureInfo.InvariantCulture) + ":X2}", t);
                     iab.AppendFormatted(t, alignment, "X2");
                     Assert.AreEqual("X2", ((IHasToStringState)t).ToStringState.LastFormat);
-                    AssertModeMatchesType(((IHasToStringState)t));
+                    AssertModeMatchesType((IHasToStringState)t);
                 }
 
                 actual.Append(ref iab);

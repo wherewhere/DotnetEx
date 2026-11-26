@@ -285,5 +285,86 @@ namespace DotnetEx.Test
                 Assert.AreEqual(default, result);
             }
         }
+
+        [Test]
+        public static void GetValues_InvokeSimpleEnumEnum_ReturnsExpected()
+        {
+            SimpleEnum[] expected = [SimpleEnum.Red, SimpleEnum.Blue, SimpleEnum.Green, SimpleEnum.Green_a, SimpleEnum.Green_b, SimpleEnum.B];
+            Assert.AreEqual(expected, Enum.GetValues(typeof(SimpleEnum)));
+            Assert.AreNotSame(Enum.GetValues(typeof(SimpleEnum)), Enum.GetValues(typeof(SimpleEnum)));
+            Assert.AreEqual(expected, Enum.GetValues<SimpleEnum>());
+        }
+
+        [Test]
+        public static void GetValues_InvokeSByteEnum_ReturnsExpected()
+        {
+            SByteEnum[] expected = [SByteEnum.One, SByteEnum.Two, SByteEnum.Max, SByteEnum.Min];
+            Assert.AreEqual(expected, Enum.GetValues(typeof(SByteEnum)));
+            Assert.AreNotSame(Enum.GetValues(typeof(SByteEnum)), Enum.GetValues(typeof(SByteEnum)));
+            Assert.AreEqual(expected, Enum.GetValues<SByteEnum>());
+        }
+
+        [Test]
+        public static void GetValues_InvokeByteEnum_ReturnsExpected()
+        {
+            ByteEnum[] expected = [ByteEnum.Min, ByteEnum.One, ByteEnum.Two, ByteEnum.Max];
+            Assert.AreEqual(expected, Enum.GetValues(typeof(ByteEnum)));
+            Assert.AreNotSame(Enum.GetValues(typeof(ByteEnum)), Enum.GetValues(typeof(ByteEnum)));
+            Assert.AreEqual(expected, Enum.GetValues<ByteEnum>());
+        }
+
+        [Test]
+        public static void GetValues_InvokeInt16Enum_ReturnsExpected()
+        {
+            Int16Enum[] expected = [Int16Enum.One, Int16Enum.Two, Int16Enum.Max, Int16Enum.Min];
+            Assert.AreEqual(expected, Enum.GetValues(typeof(Int16Enum)));
+            Assert.AreNotSame(Enum.GetValues(typeof(Int16Enum)), Enum.GetValues(typeof(Int16Enum)));
+            Assert.AreEqual(expected, Enum.GetValues<Int16Enum>());
+        }
+
+        [Test]
+        public static void GetValues_InvokeUInt16Enum_ReturnsExpected()
+        {
+            UInt16Enum[] expected = [UInt16Enum.Min, UInt16Enum.One, UInt16Enum.Two, UInt16Enum.Max];
+            Assert.AreEqual(expected, Enum.GetValues(typeof(UInt16Enum)));
+            Assert.AreNotSame(Enum.GetValues(typeof(UInt16Enum)), Enum.GetValues(typeof(UInt16Enum)));
+            Assert.AreEqual(expected, Enum.GetValues<UInt16Enum>());
+        }
+
+        [Test]
+        public static void GetValues_InvokeInt32Enum_ReturnsExpected()
+        {
+            Int32Enum[] expected = [Int32Enum.One, Int32Enum.Two, Int32Enum.Max, Int32Enum.Min];
+            Assert.AreEqual(expected, Enum.GetValues(typeof(Int32Enum)));
+            Assert.AreNotSame(Enum.GetValues(typeof(Int32Enum)), Enum.GetValues(typeof(Int32Enum)));
+            Assert.AreEqual(expected, Enum.GetValues<Int32Enum>());
+        }
+
+        [Test]
+        public static void GetValues_InvokeUInt32Enum_ReturnsExpected()
+        {
+            UInt32Enum[] expected = [UInt32Enum.Min, UInt32Enum.One, UInt32Enum.Two, UInt32Enum.Max];
+            Assert.AreEqual(expected, Enum.GetValues(typeof(UInt32Enum)));
+            Assert.AreNotSame(Enum.GetValues(typeof(UInt32Enum)), Enum.GetValues(typeof(UInt32Enum)));
+            Assert.AreEqual(expected, Enum.GetValues<UInt32Enum>());
+        }
+
+        [Test]
+        public static void GetValues_InvokeInt64Enum_ReturnsExpected()
+        {
+            Int64Enum[] expected = [Int64Enum.One, Int64Enum.Two, Int64Enum.Max, Int64Enum.Min];
+            Assert.AreEqual(expected, Enum.GetValues(typeof(Int64Enum)));
+            Assert.AreNotSame(Enum.GetValues(typeof(Int64Enum)), Enum.GetValues(typeof(Int64Enum)));
+            Assert.AreEqual(expected, Enum.GetValues<Int64Enum>());
+        }
+
+        [Test]
+        public static void GetValues_InvokeUInt64Enum_ReturnsExpected()
+        {
+            UInt64Enum[] expected = [UInt64Enum.Min, UInt64Enum.One, UInt64Enum.Two, UInt64Enum.Max];
+            Assert.AreEqual(expected, Enum.GetValues(typeof(UInt64Enum)));
+            Assert.AreNotSame(Enum.GetValues(typeof(UInt64Enum)), Enum.GetValues(typeof(UInt64Enum)));
+            Assert.AreEqual(expected, Enum.GetValues<UInt64Enum>());
+        }
     }
 }

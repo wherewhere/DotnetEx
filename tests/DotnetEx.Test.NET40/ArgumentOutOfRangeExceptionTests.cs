@@ -65,7 +65,7 @@ namespace DotnetEx.Test
 
             Assert.AreEqual(3, Throws<ArgumentOutOfRangeException>(HelpersParamName, GreaterThanOrEqualHelper(3, 1)).ActualValue);
             Assert.AreEqual(4u, Throws<ArgumentOutOfRangeException>(HelpersParamName, GreaterThanOrEqualHelper(4u, 1u)).ActualValue);
-            Assert.AreEqual((double)1.1, Throws<ArgumentOutOfRangeException>(HelpersParamName, GreaterThanOrEqualHelper(1.1, 1)).ActualValue);
+            Assert.AreEqual(1.1, Throws<ArgumentOutOfRangeException>(HelpersParamName, GreaterThanOrEqualHelper(1.1, 1)).ActualValue);
             Assert.AreEqual(2.1f, Throws<ArgumentOutOfRangeException>(HelpersParamName, GreaterThanOrEqualHelper(2.1f, 1)).ActualValue);
 
             GreaterThanOrEqualHelper(1, 2)();
@@ -87,7 +87,7 @@ namespace DotnetEx.Test
         {
             Assert.AreEqual(-1, Throws<ArgumentOutOfRangeException>(HelpersParamName, LessThanOrEqualHelper(-1, 1)).ActualValue);
             Assert.AreEqual(0u, Throws<ArgumentOutOfRangeException>(HelpersParamName, LessThanOrEqualHelper(0u, 1u)).ActualValue);
-            Assert.AreEqual((double)0.9, Throws<ArgumentOutOfRangeException>(HelpersParamName, LessThanOrEqualHelper(0.9, 1)).ActualValue);
+            Assert.AreEqual(0.9, Throws<ArgumentOutOfRangeException>(HelpersParamName, LessThanOrEqualHelper(0.9, 1)).ActualValue);
             Assert.AreEqual(-0.1f, Throws<ArgumentOutOfRangeException>(HelpersParamName, LessThanOrEqualHelper(-0.1f, 1)).ActualValue);
 
             Assert.AreEqual(1, Throws<ArgumentOutOfRangeException>(HelpersParamName, LessThanOrEqualHelper(1, 1)).ActualValue);

@@ -56,15 +56,9 @@ namespace DotnetEx.Test
             Assert.AreEqual(2, b4.B2);
             Assert.AreEqual(3, b4.B3);
 
-            int expected;
-            if (BitConverter.IsLittleEndian)
-            {
-                expected = (b4.B3 << 24) + (b4.B2 << 16) + (b4.B1 << 8) + (b4.B0);
-            }
-            else
-            {
-                expected = (b4.B0 << 24) + (b4.B1 << 16) + (b4.B2 << 8) + (b4.B3);
-            }
+            int expected = BitConverter.IsLittleEndian
+                ? (b4.B3 << 24) + (b4.B2 << 16) + (b4.B1 << 8) + b4.B0
+                : (b4.B0 << 24) + (b4.B1 << 16) + (b4.B2 << 8) + b4.B3;
             Assert.AreEqual(expected, value);
         }
 
@@ -101,15 +95,7 @@ namespace DotnetEx.Test
             b4s2.S6 = 1;
             Unsafe.Write(longAddress, b4s2);
 
-            long expected;
-            if (BitConverter.IsLittleEndian)
-            {
-                expected = 281479288520961;
-            }
-            else
-            {
-                expected = 72340172821299201;
-            }
+            long expected = BitConverter.IsLittleEndian ? 281479288520961 : 72340172821299201;
             Assert.AreEqual(expected, value);
             Assert.AreEqual(expected, Unsafe.Read<long>(longAddress));
         }
@@ -123,7 +109,7 @@ namespace DotnetEx.Test
             int** valueAddressPtr = &valueAddress;
             Unsafe.Write(valueAddressPtr, new IntPtr(&value2));
 
-            Assert.AreEqual(20, *(*valueAddressPtr));
+            Assert.AreEqual(20, **valueAddressPtr);
             Assert.AreEqual(20, Unsafe.Read<int>(valueAddress));
             Assert.AreEqual(new IntPtr(valueAddress), Unsafe.Read<nint>(valueAddressPtr));
             Assert.AreEqual(20, Unsafe.Read<int>(Unsafe.Read<IntPtr>(valueAddressPtr).ToPointer()));
@@ -581,13 +567,13 @@ namespace DotnetEx.Test
         {
             byte[] a = [0x12, 0x34, 0x56, 0x78];
 
-            ref byte r1 = ref Unsafe.AddByteOffset(ref a[0], (nint)1);
+            ref byte r1 = ref Unsafe.AddByteOffset(ref a[0], 1);
             Assert.AreEqual(0x34, r1);
 
-            ref byte r2 = ref Unsafe.AddByteOffset(ref r1, (nint)2);
+            ref byte r2 = ref Unsafe.AddByteOffset(ref r1, 2);
             Assert.AreEqual(0x78, r2);
 
-            ref byte r3 = ref Unsafe.AddByteOffset(ref r2, (nint)(-3));
+            ref byte r3 = ref Unsafe.AddByteOffset(ref r2, -3);
             Assert.AreEqual(0x12, r3);
         }
 
@@ -679,13 +665,13 @@ namespace DotnetEx.Test
         {
             byte[] a = [0x12, 0x34, 0x56, 0x78];
 
-            ref byte r1 = ref Unsafe.SubtractByteOffset(ref a[0], (nint)(-1));
+            ref byte r1 = ref Unsafe.SubtractByteOffset(ref a[0], -1);
             Assert.AreEqual(0x34, r1);
 
-            ref byte r2 = ref Unsafe.SubtractByteOffset(ref r1, (nint)(-2));
+            ref byte r2 = ref Unsafe.SubtractByteOffset(ref r1, -2);
             Assert.AreEqual(0x78, r2);
 
-            ref byte r3 = ref Unsafe.SubtractByteOffset(ref r2, (nint)3);
+            ref byte r3 = ref Unsafe.SubtractByteOffset(ref r2, 3);
             Assert.AreEqual(0x12, r3);
         }
 
@@ -1092,7 +1078,7 @@ namespace DotnetEx.Test
 
             // Runtime requires that all types be at least 1-byte, so empty to empty should succeed
 
-            EmptyA empty1 = new EmptyA();
+            EmptyA empty1 = new();
             EmptyB empty2 = Unsafe.BitCast<EmptyA, EmptyB>(empty1);
 
             // ..., likewise, empty to/from byte should succeed

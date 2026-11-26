@@ -62,7 +62,7 @@ namespace DotnetEx.Test
         [Test]
         public static void AppendLiteral()
         {
-            var expected = new StringBuilder();
+            StringBuilder expected = new();
             DefaultInterpolatedStringHandler actual = new(0, 0);
 
             foreach (string s in new[] { "", "a", "bc", "def", "this is a long string", "!" })
@@ -282,13 +282,13 @@ namespace DotnetEx.Test
                 expected.AppendFormat("{0}", t);
                 actual.AppendFormatted(t);
                 Assert.True(string.IsNullOrEmpty(((IHasToStringState)t).ToStringState.LastFormat));
-                AssertModeMatchesType(((IHasToStringState)t));
+                AssertModeMatchesType((IHasToStringState)t);
 
                 // struct, format
                 expected.AppendFormat("{0:X2}", t);
                 actual.AppendFormatted(t, "X2");
                 Assert.AreEqual("X2", ((IHasToStringState)t).ToStringState.LastFormat);
-                AssertModeMatchesType(((IHasToStringState)t));
+                AssertModeMatchesType((IHasToStringState)t);
 
                 foreach (int alignment in new[] { 0, 3, -3 })
                 {
@@ -296,13 +296,13 @@ namespace DotnetEx.Test
                     expected.AppendFormat("{0," + alignment.ToString(CultureInfo.InvariantCulture) + "}", t);
                     actual.AppendFormatted(t, alignment);
                     Assert.True(string.IsNullOrEmpty(((IHasToStringState)t).ToStringState.LastFormat));
-                    AssertModeMatchesType(((IHasToStringState)t));
+                    AssertModeMatchesType((IHasToStringState)t);
 
                     // struct, alignment, format
                     expected.AppendFormat("{0," + alignment.ToString(CultureInfo.InvariantCulture) + ":X2}", t);
                     actual.AppendFormatted(t, alignment, "X2");
                     Assert.AreEqual("X2", ((IHasToStringState)t).ToStringState.LastFormat);
-                    AssertModeMatchesType(((IHasToStringState)t));
+                    AssertModeMatchesType((IHasToStringState)t);
                 }
 
                 Assert.AreEqual(expected.ToString(), actual.ToString());

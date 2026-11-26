@@ -60,7 +60,7 @@ namespace DotnetEx.Test
         [TestCase(0x7FFFFFFF)]
         public static void CreatingAPoolWithValidMaximumArraySizeSucceeds(int length)
         {
-            var pool = ArrayPool<byte>.Create(maxArrayLength: length, maxArraysPerBucket: 1);
+            ArrayPool<byte> pool = ArrayPool<byte>.Create(maxArrayLength: length, maxArraysPerBucket: 1);
             Assert.NotNull(pool);
             Assert.NotNull(pool.Rent(1));
         }
@@ -143,7 +143,9 @@ namespace DotnetEx.Test
         private static void FillArray(byte[] buffer)
         {
             for (byte i = 0; i < buffer.Length; i++)
+            {
                 buffer[i] = i;
+            }
         }
 
         private static void CheckFilledArray(byte[] buffer, Action<byte, byte> assert)
@@ -382,7 +384,7 @@ namespace DotnetEx.Test
             {
                 for (int iter = 0; iter < 2; iter++)
                 {
-                    var buffers = new HashSet<byte[]>();
+                    HashSet<byte[]> buffers = [];
                     for (int i = 0; i < 100; i++)
                     {
                         buffers.Add(pool.Rent(length));
